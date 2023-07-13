@@ -3,8 +3,6 @@ import 'package:app/screens/completed.dart';
 import 'package:app/screens/favorites.dart';
 import 'package:app/screens/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:path_provider/path_provider.dart';
 
 //HomeScreen is a subclass of 'StatelessWidget'
 class HomeScreen extends StatelessWidget {
