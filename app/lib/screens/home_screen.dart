@@ -3,6 +3,8 @@ import 'package:app/screens/completed.dart';
 import 'package:app/screens/favorites.dart';
 import 'package:app/screens/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
+import 'package:path_provider/path_provider.dart';
 
 //HomeScreen is a subclass of 'StatelessWidget'
 class HomeScreen extends StatelessWidget {
@@ -48,7 +50,7 @@ class HomeScreen extends StatelessWidget {
             const Text(
               'Tasks show up here after you create them',
               style: TextStyle(color: Colors.white70),
-            ),          
+            ),
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 200, 280, 0),
               child: FloatingActionButton(
