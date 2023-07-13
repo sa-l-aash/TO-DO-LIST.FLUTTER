@@ -59,6 +59,7 @@ class Register extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 6),
               child: TextField(
+                obscureText:true,
                 maxLength: 30,
                 cursorColor: Colors.blue,
                 decoration: InputDecoration(
@@ -86,6 +87,7 @@ class Register extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 6),
               child: TextField(
+                obscureText:true,
                 maxLength: 30,
                 cursorColor: Colors.blue,
                 decoration: InputDecoration(
