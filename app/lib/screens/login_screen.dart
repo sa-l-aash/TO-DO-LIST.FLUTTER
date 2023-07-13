@@ -2,11 +2,33 @@
 import 'package:app/screens/home_screen.dart';
 import 'package:app/screens/register.dart';
 import 'package:flutter/material.dart';
+//import 'package:path_provider/path_provider.dart';
+// import 'dart:io';
 import 'package:app/screens/forgot_password.dart';
+// import 'package:sqflite/sqflite.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
-  @override
+//   @override
+//   _LoginScreenState createState() => _LoginScreenState();
+// }
+
+// class _LoginScreenState extends State<LoginScreen>
+//     with SingleTickerProviderStateMixin {
+//   late AnimationController _animationController;
+//   late Animation<double> _animation;
+//   final TextEditingController _emailController = TextEditingController();
+//   final TextEditingController _passwwordController = TextEditingController();
+
+//   late Database _database;
+// }
+
+// @override
+// void initState() {
+//   super.initState();
+
+// }
+@override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
