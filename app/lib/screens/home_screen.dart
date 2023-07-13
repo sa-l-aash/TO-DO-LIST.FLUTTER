@@ -47,7 +47,7 @@ class HomeScreen extends StatelessWidget {
             const Text(''),
             const Text(
               'Tasks show up here after you create them',
-              style: TextStyle(color: Colors.white70),
+              style: TextStyle(color: Colors.black),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 200, 280, 0),
