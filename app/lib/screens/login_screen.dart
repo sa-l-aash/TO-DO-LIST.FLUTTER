@@ -28,7 +28,7 @@ class LoginScreen extends StatelessWidget {
 //   super.initState();
 
 // }
-@override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -87,6 +87,8 @@ class LoginScreen extends StatelessWidget {
               ],
             ),
             const Text(''),
+           
+            const Text(''),
             TextButton(
               onPressed: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -94,6 +96,7 @@ class LoginScreen extends StatelessWidget {
               },
               child: const Text('Forgot Password ?'),
             ),
+            const Text(''),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -131,3 +134,4 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
+
