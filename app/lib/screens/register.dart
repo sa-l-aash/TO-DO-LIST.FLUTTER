@@ -54,12 +54,11 @@ class Register extends StatelessWidget {
                 ),
               ),
             ),
-
             const Text(''),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 6),
               child: TextField(
-                obscureText:true,
+                obscureText: true,
                 maxLength: 30,
                 cursorColor: Colors.blue,
                 decoration: InputDecoration(
@@ -82,12 +81,11 @@ class Register extends StatelessWidget {
                 ),
               ],
             ),
-
             const Text(''),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 6),
               child: TextField(
-                obscureText:true,
+                obscureText: true,
                 maxLength: 30,
                 cursorColor: Colors.blue,
                 decoration: InputDecoration(
@@ -100,19 +98,24 @@ class Register extends StatelessWidget {
               ),
             ),
             const Text(''),
-                  
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CheckboxExample(),
+                 Text('Do you want to be remembered?',
+                    style: TextStyle(fontWeight: FontWeight.w500)),
+              ],
+            ),
             const Text(''),
-
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const HomeScreen()));
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const HomeScreen()));
               },
               child: const Text(
                 'Register',
               ),
             ),
-
             const Text(''),
           ],
         ),
@@ -120,3 +123,40 @@ class Register extends StatelessWidget {
     );
   }
 }
+class CheckboxExample extends StatefulWidget {
+  const CheckboxExample({super.key});
+
+  @override
+  State<CheckboxExample> createState() => _CheckboxExampleState();
+}
+
+class _CheckboxExampleState extends State<CheckboxExample> {
+  bool isChecked = false;
+
+  @override
+  Widget build(BuildContext context) {
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.blue;
+      }
+      return Colors.blue;
+    }
+
+    return Checkbox(
+      checkColor: Colors.white,
+      fillColor: MaterialStateProperty.resolveWith(getColor),
+      value: isChecked,
+      onChanged: (bool? value) {
+        setState(() {
+          isChecked = value!;
+        });
+      },
+    );
+  }
+}
+
