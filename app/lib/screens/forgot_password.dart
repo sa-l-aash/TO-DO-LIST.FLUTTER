@@ -90,8 +90,10 @@ class ForgotPassword extends StatelessWidget {
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) => const HomeScreen()));
                       const snackBar = SnackBar(
+                        duration: Duration(seconds: 1),
                         backgroundColor: Colors.blue,
-                        
+                          behavior: SnackBarBehavior.floating,
+                        margin: EdgeInsets.fromLTRB(0,0, 0, 487),
                         content: Text('Login Successful'),
                       );
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
