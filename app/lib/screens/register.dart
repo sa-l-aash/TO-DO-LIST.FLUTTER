@@ -1,8 +1,13 @@
 import 'package:app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
-class Register extends StatelessWidget {
+class Register extends StatefulWidget {
   const Register({super.key});
+  @override
+  State<Register> createState() => _RegisterState();
+}
+
+class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,7 +107,7 @@ class Register extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CheckboxExample(),
-                 Text('Do you want to be remembered?',
+                Text('Do you want to be remembered?',
                     style: TextStyle(fontWeight: FontWeight.w500)),
               ],
             ),
@@ -123,6 +128,7 @@ class Register extends StatelessWidget {
     );
   }
 }
+
 class CheckboxExample extends StatefulWidget {
   const CheckboxExample({super.key});
 
@@ -159,4 +165,3 @@ class _CheckboxExampleState extends State<CheckboxExample> {
     );
   }
 }
-
