@@ -111,7 +111,7 @@ class _RegisterState extends State<Register> {
                     style: TextStyle(fontWeight: FontWeight.w500)),
               ],
             ),
-          const SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(

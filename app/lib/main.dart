@@ -8,6 +8,7 @@ void main() {
   //its a function that runs everything on the target device
   runApp(const MyApp());
 }
+
 //this is the main widget class of this application
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
