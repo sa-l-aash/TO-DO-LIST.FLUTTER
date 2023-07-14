@@ -15,8 +15,11 @@ class Completed extends StatelessWidget {
       body: const SingleChildScrollView(
         child: Column(children: <Widget>[
           Text(''),
-          Text('You have completed the following tasks',
-              style: TextStyle(fontWeight: FontWeight.bold)),
+          Text(
+            'You have completed the following tasks',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            textAlign: TextAlign.right,
+          ),
           Text(''),
           Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),

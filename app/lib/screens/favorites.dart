@@ -15,6 +15,7 @@ class Favorites extends StatelessWidget {
       body: const SingleChildScrollView(
         child: Column(
           children: <Widget>[
+            Text(''),
             Text(
               'These are your favorite tasks',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -46,7 +47,7 @@ class Favorites extends StatelessWidget {
               },
               icon: const Icon(
                 Icons.home,
-                color: Colors.white,
+                color: Color.fromARGB(255, 255, 255, 255),
               ),
             ),
             label: 'Home',

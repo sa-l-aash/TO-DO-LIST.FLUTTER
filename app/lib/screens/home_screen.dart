@@ -72,7 +72,7 @@ class HomeScreen extends StatelessWidget {
               },
               icon: const Icon(
                 Icons.home,
-                color: Colors.white,
+                color: Color.fromARGB(255, 255, 255, 255),
               ),
             ),
             label: 'Home',
