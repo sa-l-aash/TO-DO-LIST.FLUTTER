@@ -1,6 +1,5 @@
 //this imports the ui components and themes
 import 'package:app/screens/home_screen.dart';
-import 'package:app/screens/register.dart';
 import 'package:flutter/material.dart';
 //import 'package:path_provider/path_provider.dart';
 // import 'dart:io';
@@ -87,7 +86,6 @@ class LoginScreen extends StatelessWidget {
               ],
             ),
             const Text(''),
-           
             const Text(''),
             TextButton(
               onPressed: () {
@@ -107,8 +105,13 @@ class LoginScreen extends StatelessWidget {
                     onPressed: () {
                       Colors.black;
                       //this routes to the homescreen
-                      Navigator.of(context).push(MaterialPageRoute(
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) => const HomeScreen()));
+                      const snackBar = SnackBar(
+                        backgroundColor: Colors.blue,
+                        content: Text('Login successful'),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     },
                     child: const Text(
                       'Login',
@@ -116,15 +119,6 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 const Text(''),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const Register()));
-                  },
-                  child: const Text(
-                    'Register',
-                  ),
-                ),
               ],
             ),
             const Text(''),
@@ -134,4 +128,3 @@ class LoginScreen extends StatelessWidget {
     );
   }
 }
-

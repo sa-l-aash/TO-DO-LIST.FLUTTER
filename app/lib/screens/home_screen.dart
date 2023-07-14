@@ -2,6 +2,7 @@
 import 'package:app/screens/completed.dart';
 import 'package:app/screens/favorites.dart';
 import 'package:app/screens/login_screen.dart';
+import 'package:app/screens/register.dart';
 import 'package:flutter/material.dart';
 
 //HomeScreen is a subclass of 'StatelessWidget'
@@ -37,12 +38,25 @@ class HomeScreen extends StatelessWidget {
               width: 400,
             ),
             const Text(''),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const LoginScreen()));
-              },
-              child: const Text('Login/Register'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const LoginScreen()));
+                  },
+                  child: const Text('Login'),
+                ),
+             
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const Register()));
+                  },
+                  child: const Text('Register'),
+                ),
+              ],
             ),
             const Text(''),
             const Text(

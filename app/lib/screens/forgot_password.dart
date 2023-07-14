@@ -42,7 +42,7 @@ class ForgotPassword extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 6),
               child: TextField(
-             obscureText: true,
+                obscureText: true,
                 maxLength: 30,
                 cursorColor: Colors.blue,
                 decoration: InputDecoration(
@@ -67,7 +67,7 @@ class ForgotPassword extends StatelessWidget {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 6),
               child: TextField(
-                obscureText:true,
+                obscureText: true,
                 maxLength: 30,
                 cursorColor: Colors.blue,
                 decoration: InputDecoration(
@@ -87,8 +87,14 @@ class ForgotPassword extends StatelessWidget {
                   padding: const EdgeInsets.all(10.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) => const HomeScreen()));
+                      const snackBar = SnackBar(
+                        backgroundColor: Colors.blue,
+                        
+                        content: Text('Login Successful'),
+                      );
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     },
                     child: const Text('Login'),
                   ),
