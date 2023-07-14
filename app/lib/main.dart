@@ -17,9 +17,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     //'materialApp' is a widget which represents the root of this app
     return MaterialApp(
-      //reoves the debug banner
+      //removes the debug banner
       debugShowCheckedModeBanner: false,
-      //sets the title of the application
       title: 'To do list flutter app',
       //theme sets the theme data for this app
       //theme: specifies that you're defining the theme data for your application.
