@@ -1,32 +1,84 @@
-//this imports the ui components and themes
 import 'package:app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
-//import 'package:path_provider/path_provider.dart';
-// import 'dart:io';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
 import 'package:app/screens/forgot_password.dart';
-// import 'package:sqflite/sqflite.dart';
+import 'package:sqflite/sqflite.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
-//   @override
-//   _LoginScreenState createState() => _LoginScreenState();
-// }
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
 
-// class _LoginScreenState extends State<LoginScreen>
-//     with SingleTickerProviderStateMixin {
-//   late AnimationController _animationController;
-//   late Animation<double> _animation;
-//   final TextEditingController _emailController = TextEditingController();
-//   final TextEditingController _passwwordController = TextEditingController();
+class _LoginScreenState extends State<LoginScreen>
+    with SingleTickerProviderStateMixin {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
-//   late Database _database;
-// }
+  late Database _database;
 
-// @override
-// void initState() {
-//   super.initState();
+  @override
+  void initState() {
+    super.initState();
+  }
 
-// }
+  @override
+  void dispose() {
+    super.dispose();
+  }
+  // Cleans up resources when the widget is removed from the tree
+
+  Future<void> _initDatabase() async {
+    Directory documentsDirectory = await getApplicationDocumentsDirectory();
+    // Gets the directory for storing the database file
+
+    String path = "${documentsDirectory.path}/users.db";
+    // Specifies the path for the database file
+
+    _database = await openDatabase(
+      path,
+      version: 1,
+      onCreate: (Database db, int version) async {
+        await db.execute(
+          "CREATE TABLE Users (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, password TEXT)",
+        );
+      },
+    );
+    // Initializes the database and creates a Users table if it doesn't exist
+  }
+
+  Future<void> _login() async {
+    String email = _emailController.text;
+    String password = _passwordController.text;
+    // Retrieves the email and password entered by the user
+
+    List<Map<String, dynamic>> users = await _database.rawQuery(
+      "SELECT * FROM Users WHERE email = '$email' AND password = '$password'",
+    );
+    // Queries the database to find matching user credentials
+
+    if (users.isNotEmpty) {
+      // Login successful
+      // Perform necessary actions (e.g., navigate to another screen)
+      // ignore: use_build_context_synchronously
+      Navigator.pushReplacement<void, void>(
+        context,
+        MaterialPageRoute<void>(
+          builder: (BuildContext context) => const HomeScreen(),
+        ),
+      );
+      const snackBar = SnackBar(
+        content: Text('Login is Successful!'),
+      );
+
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    } else {
+      // Login failed
+      //perform other functions
+      print("Login Failed");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -107,10 +159,15 @@ class LoginScreen extends StatelessWidget {
                       //this routes to the homescreen
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
                           builder: (context) => const HomeScreen()));
+
                       const snackBar = SnackBar(
+                        duration: Duration(seconds: 1),
+                        behavior: SnackBarBehavior.floating,
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 487),
                         backgroundColor: Colors.blue,
                         content: Text('Login successful'),
                       );
+
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
                     },
                     child: const Text(
