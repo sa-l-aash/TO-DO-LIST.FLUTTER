@@ -61,6 +61,7 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         backgroundColor: const Color.fromARGB(255, 105, 7, 7),
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(

@@ -7,51 +7,37 @@ class Favorites extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-      title: const Text('Favorite Tasks'),
-      backgroundColor: const Color.fromARGB(255, 105, 7, 7),
-            automaticallyImplyLeading: false,
-
-    ),
-    body:const SingleChildScrollView(
-      child: Column(
-
-        children: <Widget> [
-          Text('These are your favorite tasks',
-          style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold), 
-          textAlign: TextAlign.right,
-        ),
-        Text(''),
-
-        Padding(padding:EdgeInsets.symmetric(horizontal:30),
-       child: TextField(
-          decoration: InputDecoration(
-            icon:Icon(Icons.favorite,
-            color:Colors.red),
-            labelText:'Task 1' ,
-            border:OutlineInputBorder(),
-            ),
-       ),
-       ),
-        
-         
-        
-        ],
+      appBar: AppBar(
+        title: const Text('Favorite Tasks'),
+        backgroundColor: const Color.fromARGB(255, 105, 7, 7),
+        automaticallyImplyLeading: false,
       ),
-    ),
-     bottomNavigationBar: BottomNavigationBar(
+      body: const SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Text(
+              'These are your favorite tasks',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              textAlign: TextAlign.right,
+            ),
+            Text(''),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 30),
+              child: TextField(
+                decoration: InputDecoration(
+                  icon: Icon(Icons.favorite, color: Colors.red),
+                  labelText: 'Task 1',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         backgroundColor: const Color.fromARGB(255, 105, 7, 7),
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: IconButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const Favorites()));
-              },
-              icon: const Icon(Icons.favorite, color: Colors.white),
-            ),
-            label: 'Favorites',
-          ),
           BottomNavigationBarItem(
             icon: IconButton(
               onPressed: () {
@@ -75,7 +61,16 @@ class Favorites extends StatelessWidget {
             ),
             label: 'completed',
           ),
-          
+          BottomNavigationBarItem(
+            icon: IconButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const Favorites()));
+              },
+              icon: const Icon(Icons.favorite, color: Colors.white),
+            ),
+            label: 'Favorites',
+          ),
         ],
       ),
     );
