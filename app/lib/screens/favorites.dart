@@ -26,8 +26,9 @@ class Favorites extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: TextField(
                 decoration: InputDecoration(
-                  icon: Icon(Icons.favorite, color: Colors.red),
+                  prefixIcon: Icon(Icons.favorite, color: Colors.red),
                   labelText: 'Task 1',
+                  labelStyle: TextStyle(color: Colors.white),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -36,8 +37,7 @@ class Favorites extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-                backgroundColor:  const Color.fromARGB(255, 105, 7, 7),
-
+        backgroundColor: const Color.fromARGB(255, 105, 7, 7),
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -67,6 +67,7 @@ class Favorites extends StatelessWidget {
           BottomNavigationBarItem(
             icon: IconButton(
               onPressed: () {
+           
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => const Favorites()));
               },

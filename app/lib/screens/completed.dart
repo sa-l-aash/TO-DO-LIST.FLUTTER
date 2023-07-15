@@ -21,20 +21,20 @@ class Completed extends StatelessWidget {
             textAlign: TextAlign.right,
           ),
           Text(''),
-          Text(''),
           Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: TextField(
                   decoration: InputDecoration(
-                icon: Icon(Icons.check_box, color: Colors.blue),
+                prefixIcon: Icon(Icons.check_box,
+                    color: Colors.blue),
                 labelText: 'Task 1',
+                labelStyle: TextStyle(color: Colors.white),
                 border: OutlineInputBorder(),
               ))),
         ]),
       ),
       bottomNavigationBar: BottomNavigationBar(
-                backgroundColor:  const Color.fromARGB(255, 105, 7, 7),
-
+        backgroundColor: const Color.fromARGB(255, 105, 7, 7),
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -57,8 +57,7 @@ class Completed extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => const Completed()));
               },
               icon: const Icon(Icons.check_box),
-                          color:const Color.fromARGB(255, 255, 255, 255),
-
+              color: const Color.fromARGB(255, 255, 255, 255),
             ),
             label: 'completed',
 
