@@ -97,14 +97,18 @@ class _LoginScreenState extends State<LoginScreen>
             ),
             const Text(''),
             
-            const Image(
+            ClipRRect(
+              borderRadius:BorderRadius.circular(10),
+              child: const Image(
               
               fit: BoxFit.cover,
               image: AssetImage('images/undraw_Mobile_login_re_9ntv.png'),
               width: 300,
               height: 300,
             ),
-            
+            ),
+            const Text(''),
+              const Text(''),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 6),
               child: TextField(
@@ -112,11 +116,12 @@ class _LoginScreenState extends State<LoginScreen>
                 cursorColor: Colors.blue,
                 decoration: InputDecoration(
                   labelText: 'Email',
-                  labelStyle: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                  labelStyle: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
                   border: OutlineInputBorder(),
                 ),
               ),
             ),
+            const Text(''),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 6),
               child: TextField(
@@ -126,7 +131,7 @@ class _LoginScreenState extends State<LoginScreen>
                 decoration: InputDecoration(
                   labelText: 'Password',
                   labelStyle: TextStyle(
-                    color: Colors.black,
+                    color: Color.fromARGB(255, 255, 255, 255),
                   ),
                   border: OutlineInputBorder(),
                 ),
@@ -137,7 +142,7 @@ class _LoginScreenState extends State<LoginScreen>
                 Padding(padding: EdgeInsets.all(6)),
                 Text(
                   'Must have a min of 8 characters including letters and integers',
-                  style: TextStyle(fontSize: 10, color: Colors.black87),
+                  style: TextStyle(fontSize: 10, color: Color.fromARGB(221, 255, 255, 255)),
                 ),
               ],
             ),

@@ -33,9 +33,21 @@ class HomeScreen extends StatelessWidget {
               color: Colors.blue,
             ),
             const Text(''),
-            const Image(
+
+
+
+
+
+            
+            ClipRRect(
+    borderRadius: BorderRadius.circular(10),
+    child: const Image(
+              
               image: AssetImage('images/undraw_Add_tasks_re_s5yj.png'),
               width: 400,
+              
+              
+            ),
             ),
             const Text(''),
             Row(
@@ -60,7 +72,7 @@ class HomeScreen extends StatelessWidget {
             const Text(''),
             const Text(
               'Tasks show up here after you create them',
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 200, 280, 0),
