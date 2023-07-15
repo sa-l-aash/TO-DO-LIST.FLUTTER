@@ -115,14 +115,14 @@ class _RegisterState extends State<Register> {
               ),
             ),
             const Text(''),
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CheckboxExample(),
-                Text('Do you want to be remembered?',
-                    style: TextStyle(fontWeight: FontWeight.w500)),
-              ],
-            ),
+            // const Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     CheckboxExample(),
+            //     Text('Do you want to be remembered?',
+            //         style: TextStyle(fontWeight: FontWeight.w500)),
+            //   ],
+            // ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
@@ -154,39 +154,39 @@ class _RegisterState extends State<Register> {
   }
 }
 
-class CheckboxExample extends StatefulWidget {
-  const CheckboxExample({super.key});
+// class CheckboxExample extends StatefulWidget {
+//   const CheckboxExample({super.key});
 
-  @override
-  State<CheckboxExample> createState() => _CheckboxExampleState();
-}
+//   @override
+//   State<CheckboxExample> createState() => _CheckboxExampleState();
+// }
 
-class _CheckboxExampleState extends State<CheckboxExample> {
-  bool isChecked = false;
+// class _CheckboxExampleState extends State<CheckboxExample> {
+//   bool isChecked = false;
 
-  @override
-  Widget build(BuildContext context) {
-    Color getColor(Set<MaterialState> states) {
-      const Set<MaterialState> interactiveStates = <MaterialState>{
-        MaterialState.pressed,
-        MaterialState.hovered,
-        MaterialState.focused,
-      };
-      if (states.any(interactiveStates.contains)) {
-        return Colors.blue;
-      }
-      return Colors.blue;
-    }
+//   @override
+//   Widget build(BuildContext context) {
+//     Color getColor(Set<MaterialState> states) {
+//       const Set<MaterialState> interactiveStates = <MaterialState>{
+//         MaterialState.pressed,
+//         MaterialState.hovered,
+//         MaterialState.focused,
+//       };
+//       if (states.any(interactiveStates.contains)) {
+//         return Colors.blue;
+//       }
+//       return Colors.blue;
+//     }
 
-    return Checkbox(
-      checkColor: Colors.white,
-      fillColor: MaterialStateProperty.resolveWith(getColor),
-      value: isChecked,
-      onChanged: (bool? value) {
-        setState(() {
-          isChecked = value!;
-        });
-      },
-    );
-  }
-}
+//     return Checkbox(
+//       checkColor: Colors.white,
+//       fillColor: MaterialStateProperty.resolveWith(getColor),
+//       value: isChecked,
+//       onChanged: (bool? value) {
+//         setState(() {
+//           isChecked = value!;
+//         });
+//       },
+//     );
+//   }
+// }
