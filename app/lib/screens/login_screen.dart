@@ -96,11 +96,15 @@ class _LoginScreenState extends State<LoginScreen>
               style: TextStyle(fontSize: 28),
             ),
             const Text(''),
+            
             const Image(
+              
+              fit: BoxFit.cover,
               image: AssetImage('images/undraw_Mobile_login_re_9ntv.png'),
               width: 300,
               height: 300,
             ),
+            
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 6),
               child: TextField(

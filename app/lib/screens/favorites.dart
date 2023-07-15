@@ -36,8 +36,9 @@ class Favorites extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+                backgroundColor:  const Color.fromARGB(255, 105, 7, 7),
+
         type: BottomNavigationBarType.fixed,
-        backgroundColor: const Color.fromARGB(255, 105, 7, 7),
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: IconButton(
@@ -47,7 +48,7 @@ class Favorites extends StatelessWidget {
               },
               icon: const Icon(
                 Icons.home,
-                color: Color.fromARGB(255, 255, 255, 255),
+                color: Colors.grey,
               ),
             ),
             label: 'Home',
@@ -58,7 +59,8 @@ class Favorites extends StatelessWidget {
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => const Completed()));
               },
-              icon: const Icon(Icons.check_box, color: Colors.white),
+              icon: const Icon(Icons.check_box),
+              color: Colors.grey,
             ),
             label: 'completed',
           ),
@@ -68,7 +70,8 @@ class Favorites extends StatelessWidget {
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => const Favorites()));
               },
-              icon: const Icon(Icons.favorite, color: Colors.white),
+              icon: const Icon(Icons.favorite),
+              color: const Color.fromARGB(255, 255, 255, 255),
             ),
             label: 'Favorites',
           ),

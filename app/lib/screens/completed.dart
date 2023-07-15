@@ -21,6 +21,7 @@ class Completed extends StatelessWidget {
             textAlign: TextAlign.right,
           ),
           Text(''),
+          Text(''),
           Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: TextField(
@@ -32,8 +33,9 @@ class Completed extends StatelessWidget {
         ]),
       ),
       bottomNavigationBar: BottomNavigationBar(
+                backgroundColor:  const Color.fromARGB(255, 105, 7, 7),
+
         type: BottomNavigationBarType.fixed,
-        backgroundColor: const Color.fromARGB(255, 105, 7, 7),
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: IconButton(
@@ -43,7 +45,7 @@ class Completed extends StatelessWidget {
               },
               icon: const Icon(
                 Icons.home,
-                color: Colors.white,
+                color: Colors.grey,
               ),
             ),
             label: 'Home',
@@ -54,9 +56,12 @@ class Completed extends StatelessWidget {
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => const Completed()));
               },
-              icon: const Icon(Icons.check_box, color: Colors.white),
+              icon: const Icon(Icons.check_box),
+                          color:const Color.fromARGB(255, 255, 255, 255),
+
             ),
             label: 'completed',
+
           ),
           BottomNavigationBarItem(
             icon: IconButton(
@@ -64,7 +69,8 @@ class Completed extends StatelessWidget {
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => const Favorites()));
               },
-              icon: const Icon(Icons.favorite, color: Colors.white),
+              icon: const Icon(Icons.favorite),
+              color: Colors.grey,
             ),
             label: 'Favorites',
           ),
