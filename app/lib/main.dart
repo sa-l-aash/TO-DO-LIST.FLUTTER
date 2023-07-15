@@ -2,9 +2,13 @@
 import 'package:flutter/material.dart';
 //importing home_screen
 import 'package:app/screens/home_screen.dart';
+import 'package:flutter/services.dart';
 
 //this is the main method
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+  );
   //its a function that runs everything on the target device
   runApp(const MyApp());
 }
@@ -21,17 +25,13 @@ class MyApp extends StatelessWidget {
       //removes the debug banner
       debugShowCheckedModeBanner: false,
       title: 'To do list flutter app',
-      //theme sets the theme data for this app
-      //theme: specifies that you're defining the theme data for your application.
-//ThemeData( creates an instance of the ThemeData class, which represents the overall theme configuration.
-//primarySwatch: is a property of ThemeData that sets the primary color for your application.
       theme: ThemeData(
-          primarySwatch: Colors.blue,
+          brightness: Brightness.light,
+          //primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity),
-      //the 'home' property sets the initial route of your app
-      //to the 'HomeScreen' widget
-      //it tells Flutter that the HomeScreen widget should be displayed as
-      //the first screen when the app launches.
+      darkTheme: ThemeData(brightness: Brightness.dark),
+
+      themeMode: ThemeMode.system,
       home: const HomeScreen(),
     );
   }
