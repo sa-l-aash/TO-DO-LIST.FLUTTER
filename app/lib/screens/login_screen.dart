@@ -40,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen>
       version: 1,
       onCreate: (Database db, int version) async {
         await db.execute(
-          "CREATE TABLE Users (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, password TEXT)",
+          "CREATE TABLE Users (PRIMARY KEY AUTOINCREMENT, email TEXT, password TEXT)",
         );
       },
     );
@@ -165,7 +165,7 @@ class _LoginScreenState extends State<LoginScreen>
                         behavior: SnackBarBehavior.floating,
                         margin: EdgeInsets.fromLTRB(0, 0, 0, 487),
                         backgroundColor: Colors.blue,
-                        content: Text('Login successful'),
+                        content: Text('Login  successful'),
                       );
 
                       ScaffoldMessenger.of(context).showSnackBar(snackBar);
