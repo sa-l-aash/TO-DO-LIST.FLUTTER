@@ -6,9 +6,27 @@ import 'package:app/screens/register.dart';
 import 'package:flutter/material.dart';
 
 //HomeScreen is a subclass of 'StatelessWidget'
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
   @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  List<String> tasks = [];
+
+  void addTask(String task) {
+    setState(() {
+      tasks.add(task);
+    });
+  }
+
+  void deleteTask(int index) {
+    setState(() {
+      tasks.removeAt(index);
+    });
+  }
+@override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -21,6 +39,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            
             const Text(''),
             const Text(
               'Hi this is your to do list app',
@@ -33,21 +52,12 @@ class HomeScreen extends StatelessWidget {
               color: Colors.blue,
             ),
             const Text(''),
-
-
-
-
-
-            
             ClipRRect(
-    borderRadius: BorderRadius.circular(10),
-    child: const Image(
-              
-              image: AssetImage('images/undraw_Add_tasks_re_s5yj.png'),
-              width: 400,
-              
-              
-            ),
+              borderRadius: BorderRadius.circular(10),
+              child: const Image(
+                image: AssetImage('images/undraw_Add_tasks_re_s5yj.png'),
+                width: 400,
+              ),
             ),
             const Text(''),
             Row(
@@ -77,23 +87,26 @@ class HomeScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 200, 280, 0),
               child: FloatingActionButton(
-                backgroundColor: const Color.fromARGB(255, 105, 7, 7),
+                backgroundColor: const Color.fromARGB(255, 255, 255, 255),
                 child: const Icon(Icons.add),
-                onPressed: () {},
+                
+                onPressed: () {
+                  addTask('New Task');
+                },
               ),
             ),
           ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor:  const Color.fromARGB(255, 105, 7, 7),
+        backgroundColor: const Color.fromARGB(255, 105, 7, 7),
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: IconButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const HomeScreen()));
+                    builder: (context) =>  const HomeScreen()));
               },
               icon: const Icon(
                 Icons.home,
