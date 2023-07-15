@@ -26,7 +26,8 @@ class _HomeScreenState extends State<HomeScreen> {
       tasks.removeAt(index);
     });
   }
-@override
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -39,7 +40,6 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            
             const Text(''),
             const Text(
               'Hi this is your to do list app',
@@ -89,7 +89,6 @@ class _HomeScreenState extends State<HomeScreen> {
               child: FloatingActionButton(
                 backgroundColor: const Color.fromARGB(255, 255, 255, 255),
                 child: const Icon(Icons.add),
-                
                 onPressed: () {
                   addTask('New Task');
                 },
@@ -106,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: IconButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) =>  const HomeScreen()));
+                    builder: (context) => const HomeScreen()));
               },
               icon: const Icon(
                 Icons.home,

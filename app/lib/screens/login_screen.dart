@@ -96,19 +96,17 @@ class _LoginScreenState extends State<LoginScreen>
               style: TextStyle(fontSize: 28),
             ),
             const Text(''),
-            
             ClipRRect(
-              borderRadius:BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(10),
               child: const Image(
-              
-              fit: BoxFit.cover,
-              image: AssetImage('images/undraw_Mobile_login_re_9ntv.png'),
-              width: 300,
-              height: 300,
-            ),
+                fit: BoxFit.cover,
+                image: AssetImage('images/undraw_Mobile_login_re_9ntv.png'),
+                width: 300,
+                height: 300,
+              ),
             ),
             const Text(''),
-              const Text(''),
+            const Text(''),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 6),
               child: TextField(
@@ -116,7 +114,8 @@ class _LoginScreenState extends State<LoginScreen>
                 cursorColor: Colors.blue,
                 decoration: InputDecoration(
                   labelText: 'Email',
-                  labelStyle: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+                  labelStyle:
+                      TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -142,7 +141,8 @@ class _LoginScreenState extends State<LoginScreen>
                 Padding(padding: EdgeInsets.all(6)),
                 Text(
                   'Must have a min of 8 characters including letters and integers',
-                  style: TextStyle(fontSize: 10, color: Color.fromARGB(221, 255, 255, 255)),
+                  style: TextStyle(
+                      fontSize: 10, color: Color.fromARGB(221, 255, 255, 255)),
                 ),
               ],
             ),
