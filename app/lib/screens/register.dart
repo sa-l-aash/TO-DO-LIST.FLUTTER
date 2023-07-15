@@ -7,7 +7,15 @@ class Register extends StatefulWidget {
   State<Register> createState() => _RegisterState();
 }
 
+
 class _RegisterState extends State<Register> {
+  // bool passwordMatch(){
+  //   if(passwordController.text == passCheckController.text) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,6 +42,7 @@ class _RegisterState extends State<Register> {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 6),
               child: TextField(
+                // controller: userNameController,
                 maxLength: 30,
                 cursorColor: Colors.blue,
                 decoration: InputDecoration(
@@ -49,6 +58,7 @@ class _RegisterState extends State<Register> {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 6),
               child: TextField(
+                // controller: emailController,
                 maxLength: 30,
                 cursorColor: Colors.blue,
                 //this decorates things inside the textfield
@@ -63,6 +73,7 @@ class _RegisterState extends State<Register> {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 6),
               child: TextField(
+                // controller: passwordController,
                 obscureText: true,
                 maxLength: 30,
                 cursorColor: Colors.blue,
@@ -90,6 +101,7 @@ class _RegisterState extends State<Register> {
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 6),
               child: TextField(
+                // controller: passCheckController,
                 obscureText: true,
                 maxLength: 30,
                 cursorColor: Colors.blue,
@@ -116,12 +128,25 @@ class _RegisterState extends State<Register> {
               onPressed: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (context) => const HomeScreen()));
+                const snackBar = SnackBar(
+                  margin: EdgeInsets.fromLTRB(0, 0, 0, 487),
+                  behavior: SnackBarBehavior.floating,
+                  duration: Duration(seconds: 2),
+                  backgroundColor: Colors.blue,
+                  content: Text('registration completed'),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
               },
               child: const Text(
                 'Register',
               ),
             ),
             const Text(''),
+            // ElevatedButton(
+            //   onPressed: insertIntoDB,
+            //   style: elevatedButtonsStyle,
+            //   child: const Text('Register'),
+            // )
           ],
         ),
       ),
