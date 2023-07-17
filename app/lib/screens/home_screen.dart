@@ -4,6 +4,7 @@ import 'package:app/screens/favorites.dart';
 import 'package:app/screens/login_screen.dart';
 import 'package:app/screens/register.dart';
 import 'package:flutter/material.dart';
+//import 'package:path/path.dart';
 
 //HomeScreen is a subclass of 'StatelessWidget'
 class HomeScreen extends StatefulWidget {
@@ -13,7 +14,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<String> tasks = [];
+  String printText(String text) {
+    print(text);
+    return 'Hello $text';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +81,9 @@ class _HomeScreenState extends State<HomeScreen> {
               child: FloatingActionButton(
                 backgroundColor: const Color.fromARGB(255, 105, 7, 7),
                 child: const Icon(Icons.add),
-                onPressed: () {},
+                onPressed: () {
+                  printText('Hello World');
+                },
               ),
             ),
           ],
