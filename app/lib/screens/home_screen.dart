@@ -15,18 +15,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List<String> tasks = [];
 
-  void addTask(String task) {
-    setState(() {
-      tasks.add(task);
-    });
-  }
-
-  void deleteTask(int index) {
-    setState(() {
-      tasks.removeAt(index);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,13 +73,11 @@ class _HomeScreenState extends State<HomeScreen> {
               style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(0, 200, 280, 0),
+              padding: const EdgeInsets.fromLTRB(0, 200, 385, 10),
               child: FloatingActionButton(
-                backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+                backgroundColor: const Color.fromARGB(255, 105, 7, 7),
                 child: const Icon(Icons.add),
-                onPressed: () {
-                  addTask('New Task');
-                },
+                onPressed: () {},
               ),
             ),
           ],
