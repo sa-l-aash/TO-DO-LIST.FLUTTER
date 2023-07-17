@@ -34,7 +34,7 @@ class _RegisterState extends State<Register> {
             ),
             const Text(''),
            ClipRRect(
-           borderRadius: BorderRadius.circular(10),
+           borderRadius: BorderRadius.circular(45),
               child: const Image(
               image: AssetImage('images/undraw_Sign_up_n6im.png'),
               width: 300,
@@ -134,7 +134,7 @@ class _RegisterState extends State<Register> {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (context) => const HomeScreen()));
                 const snackBar = SnackBar(
-                  margin: EdgeInsets.fromLTRB(0, 0, 0, 487),
+                  margin: EdgeInsets.fromLTRB(0, 0, 0, 635),
                   behavior: SnackBarBehavior.floating,
                   duration: Duration(seconds: 2),
                   backgroundColor: Colors.blue,

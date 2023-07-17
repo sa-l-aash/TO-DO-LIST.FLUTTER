@@ -172,7 +172,7 @@ class _LoginScreenState extends State<LoginScreen>
                       const snackBar = SnackBar(
                         duration: Duration(seconds: 1),
                         behavior: SnackBarBehavior.floating,
-                        margin: EdgeInsets.fromLTRB(0, 0, 0, 487),
+                        margin: EdgeInsets.fromLTRB(0, 0, 0, 635),
                         backgroundColor: Colors.blue,
                         content: Text('Login  successful'),
                       );
