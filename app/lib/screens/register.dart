@@ -37,11 +37,10 @@ class _RegisterState extends State<Register> {
     if (password != confirmPassword) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          margin: EdgeInsets.fromLTRB(0, 0, 0, 715),
           behavior: SnackBarBehavior.floating,
           duration: Duration(seconds: 2),
           backgroundColor: Colors.blue,
-          content: Text('ERROR: Password do not match '),
+          content: Text('ERROR: Passwords do not match '),
         ),
       );
       return;
