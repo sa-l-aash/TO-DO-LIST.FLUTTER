@@ -1,20 +1,60 @@
-import 'package:app/screens/home_screen.dart';
+import 'package:app/screens/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:sqflite/sqflite.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
+
   @override
   State<Register> createState() => _RegisterState();
 }
 
 class _RegisterState extends State<Register> {
-  // bool passwordMatch(){
-  //   if(passwordController.text == passCheckController.text) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+
+  Future<Database> _dataBase() async {
+    return await openDatabase(
+      'todo.db',
+      version: 1,
+      onCreate: (Database db, int version) {
+        db.execute(
+          'CREATE TABLE Users (name TEXT, email VARCHAR, password VARCHAR)',
+        );
+      },
+    );
+  }
+
+  void _register() async {
+    final db = await _dataBase();
+    final String name = _nameController.text;
+    final String email = _emailController.text;
+    final String password = _passwordController.text;
+    final String confirmPassword = _confirmPasswordController.text;
+
+    if (password != confirmPassword) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          duration: Duration(seconds: 2),
+          margin: EdgeInsets.fromLTRB(0, 0, 0, 635),
+          backgroundColor: Colors.blue,
+          content: Text('Password do not match '),
+        ),
+      );
+      return;
+    } else {
+      await db.insert('Users', {
+        'name': name,
+        ' email': email,
+        ' password': password,
+      });
+      Navigator.pushReplacement<void, void>(context,
+          MaterialPageRoute<void>(builder: (context) => const LoginScreen()));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,33 +80,31 @@ class _RegisterState extends State<Register> {
                 height: 200,
               ),
             ),
-
             const Text(''),
-            const Text(''),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 6),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 6),
               child: TextField(
-                // controller: userNameController,
+                controller: _nameController,
                 maxLength: 30,
                 cursorColor: Colors.blue,
-                decoration: InputDecoration(
-                  labelText: 'Full Name',
+                decoration: const InputDecoration(
+                  labelText: 'name',
                   labelStyle: TextStyle(
-                    color: Color.fromARGB(255, 254, 254, 254),
+                    //color: Color.fromARGB(255, 254, 254, 254),
                   ),
                   border: OutlineInputBorder(),
                 ),
               ),
             ),
             const Text(''),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 6),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 6),
               child: TextField(
-                // controller: emailController,
+                controller: _emailController,
                 maxLength: 30,
                 cursorColor: Colors.blue,
                 //this decorates things inside the textfield
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Email',
                   labelStyle:
                       TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
@@ -75,14 +113,14 @@ class _RegisterState extends State<Register> {
               ),
             ),
             const Text(''),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 6),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 6),
               child: TextField(
-                // controller: passwordController,
+                controller: _passwordController,
                 obscureText: true,
                 maxLength: 30,
                 cursorColor: Colors.blue,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Password',
                   labelStyle: TextStyle(
                     color: Color.fromARGB(255, 255, 255, 255),
@@ -104,14 +142,14 @@ class _RegisterState extends State<Register> {
               ],
             ),
             const Text(''),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 6),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 6),
               child: TextField(
-                // controller: passCheckController,
+                controller: _confirmPasswordController,
                 obscureText: true,
                 maxLength: 30,
                 cursorColor: Colors.blue,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Confirm Password',
                   labelStyle: TextStyle(
                     color: Color.fromARGB(255, 255, 255, 255),
@@ -121,44 +159,21 @@ class _RegisterState extends State<Register> {
               ),
             ),
             const Text(''),
-            // const Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     CheckboxExample(),
-            //     Text('Do you want to be remembered?',
-            //         style: TextStyle(fontWeight: FontWeight.w500)),
-            //   ],
-            // ),
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const HomeScreen()));
-                const snackBar = SnackBar(
-                  margin: EdgeInsets.fromLTRB(0, 0, 0, 635),
-                  behavior: SnackBarBehavior.floating,
-                  duration: Duration(seconds: 2),
-                  backgroundColor: Colors.blue,
-                  content: Text('registration completed'),
-                );
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                _register();
               },
               child: const Text(
                 'Register',
               ),
             ),
             const Text(''),
-            // ElevatedButton(
-            //   onPressed: insertIntoDB,
-            //   style: elevatedButtonsStyle,
-            //   child: const Text('Register'),
-            // )
           ],
         ),
       ),
     );
   }
-}
 
 // class CheckboxExample extends StatefulWidget {
 //   const CheckboxExample({super.key});
@@ -196,3 +211,4 @@ class _RegisterState extends State<Register> {
 //     );
 //   }
 // }
+}
