@@ -43,7 +43,7 @@ class Favorites extends StatelessWidget {
           BottomNavigationBarItem(
             icon: IconButton(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (context) => const HomeScreen()));
               },
               icon: const Icon(
@@ -56,7 +56,7 @@ class Favorites extends StatelessWidget {
           BottomNavigationBarItem(
             icon: IconButton(
               onPressed: () {
-                Navigator.of(context).push(
+                Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: (context) => const Completed()));
               },
               icon: const Icon(Icons.check_box),
@@ -67,7 +67,7 @@ class Favorites extends StatelessWidget {
           BottomNavigationBarItem(
             icon: IconButton(
               onPressed: () {
-                Navigator.of(context).push(
+                Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: (context) => const Favorites()));
               },
               icon: const Icon(Icons.favorite),

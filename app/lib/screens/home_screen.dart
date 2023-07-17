@@ -29,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       //'body' specifies the content of the screen
       body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 5),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -96,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: IconButton(
               onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (context) => const HomeScreen()));
               },
               icon: const Icon(
@@ -109,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: IconButton(
               onPressed: () {
-                Navigator.of(context).push(
+                Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: (context) => const Completed()));
               },
               icon: const Icon(Icons.check_box),
@@ -120,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: IconButton(
               onPressed: () {
-                Navigator.of(context).push(
+                Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: (context) => const Favorites()));
               },
               icon: const Icon(Icons.favorite),
