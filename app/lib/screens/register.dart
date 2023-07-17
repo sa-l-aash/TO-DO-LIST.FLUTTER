@@ -37,10 +37,11 @@ class _RegisterState extends State<Register> {
     if (password != confirmPassword) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
+          margin: EdgeInsets.fromLTRB(0, 0, 0, 715),
+          behavior: SnackBarBehavior.floating,
           duration: Duration(seconds: 2),
-          margin: EdgeInsets.fromLTRB(0, 0, 0, 635),
           backgroundColor: Colors.blue,
-          content: Text('Password do not match '),
+          content: Text('ERROR: Password do not match '),
         ),
       );
       return;
@@ -63,6 +64,7 @@ class _RegisterState extends State<Register> {
         backgroundColor: const Color.fromARGB(255, 105, 7, 7),
       ),
       body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 5),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -90,7 +92,7 @@ class _RegisterState extends State<Register> {
                 decoration: const InputDecoration(
                   labelText: 'name',
                   labelStyle: TextStyle(
-                    //color: Color.fromARGB(255, 254, 254, 254),
+                    color: Color.fromARGB(255, 254, 254, 254),
                   ),
                   border: OutlineInputBorder(),
                 ),
