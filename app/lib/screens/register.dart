@@ -7,7 +7,6 @@ class Register extends StatefulWidget {
   State<Register> createState() => _RegisterState();
 }
 
-
 class _RegisterState extends State<Register> {
   // bool passwordMatch(){
   //   if(passwordController.text == passCheckController.text) {
@@ -33,17 +32,17 @@ class _RegisterState extends State<Register> {
               style: TextStyle(fontSize: 28),
             ),
             const Text(''),
-           ClipRRect(
-           borderRadius: BorderRadius.circular(45),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(45),
               child: const Image(
-              image: AssetImage('images/undraw_Sign_up_n6im.png'),
-              width: 300,
-              height: 200,
+                image: AssetImage('images/undraw_Sign_up_n6im.png'),
+                width: 300,
+                height: 200,
+              ),
             ),
-            ),
-            
+
             const Text(''),
-              const Text(''),
+            const Text(''),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 6),
               child: TextField(
@@ -69,7 +68,8 @@ class _RegisterState extends State<Register> {
                 //this decorates things inside the textfield
                 decoration: InputDecoration(
                   labelText: 'Email',
-                  labelStyle: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+                  labelStyle:
+                      TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -98,7 +98,8 @@ class _RegisterState extends State<Register> {
                 ),
                 Text(
                   'Must have a min of 8 characters including letters and integers ',
-                  style: TextStyle(fontSize: 10, color: Color.fromARGB(221, 255, 255, 255)),
+                  style: TextStyle(
+                      fontSize: 10, color: Color.fromARGB(221, 255, 255, 255)),
                 ),
               ],
             ),

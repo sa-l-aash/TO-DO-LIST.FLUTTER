@@ -8,9 +8,9 @@ import 'package:flutter/material.dart';
 
 //HomeScreen is a subclass of 'StatelessWidget'
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
@@ -57,8 +57,8 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => LoginScreen()));
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const LoginScreen()));
                   },
                   child: const Text('Login'),
                 ),
@@ -77,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
               style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(0, 200, 385, 10),
+              padding: const EdgeInsets.fromLTRB(30, 200, 290, 10),
               child: FloatingActionButton(
                 backgroundColor: const Color.fromARGB(255, 105, 7, 7),
                 child: const Icon(Icons.add),

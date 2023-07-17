@@ -25,8 +25,7 @@ class Completed extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: TextField(
                   decoration: InputDecoration(
-                prefixIcon: Icon(Icons.check_box,
-                    color: Colors.blue),
+                prefixIcon: Icon(Icons.check_box, color: Colors.blue),
                 labelText: 'Task 1',
                 labelStyle: TextStyle(color: Colors.white),
                 border: OutlineInputBorder(),
@@ -60,7 +59,6 @@ class Completed extends StatelessWidget {
               color: const Color.fromARGB(255, 255, 255, 255),
             ),
             label: 'completed',
-
           ),
           BottomNavigationBarItem(
             icon: IconButton(

@@ -67,7 +67,6 @@ class Favorites extends StatelessWidget {
           BottomNavigationBarItem(
             icon: IconButton(
               onPressed: () {
-           
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => const Favorites()));
               },

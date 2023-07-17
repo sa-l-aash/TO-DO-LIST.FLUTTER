@@ -23,12 +23,11 @@ class ForgotPassword extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
               child: const Image(
-              image: AssetImage('images/undraw_Forgot_password_re_hxwm.png'),
-              width: 300,
-              height: 200,
+                image: AssetImage('images/undraw_Forgot_password_re_hxwm.png'),
+                width: 300,
+                height: 200,
+              ),
             ),
-            ),
-            
             const Text(''),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 6),
@@ -37,7 +36,8 @@ class ForgotPassword extends StatelessWidget {
                 cursorColor: Colors.blue,
                 decoration: InputDecoration(
                   labelText: 'Email',
-                  labelStyle: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+                  labelStyle:
+                      TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -63,7 +63,8 @@ class ForgotPassword extends StatelessWidget {
                 Padding(padding: EdgeInsets.all(6.0)),
                 Text(
                   'Must have a min of 8 characters including letters and integers',
-                  style: TextStyle(fontSize: 10, color: Color.fromARGB(221, 255, 255, 255)),
+                  style: TextStyle(
+                      fontSize: 10, color: Color.fromARGB(221, 255, 255, 255)),
                 ),
               ],
             ),
