@@ -25,13 +25,13 @@ class MyApp extends StatelessWidget {
       //removes the debug banner
       debugShowCheckedModeBanner: false,
       title: 'To do list flutter app',
-      theme: ThemeData(
-          brightness: Brightness.light,
-          //primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity),
-      darkTheme: ThemeData(brightness: Brightness.dark),
+      theme: ThemeData.dark(),
+    //       brightness: Brightness.light,
+    //       //primarySwatch: Colors.blue,
+    //       visualDensity: VisualDensity.adaptivePlatformDensity),
+    //   darkTheme: ThemeData(brightness: Brightness.dark),
 
-      themeMode: ThemeMode.system,
+    //   themeMode: ThemeMode.system,
       home: const HomeScreen(),
     );
   }
