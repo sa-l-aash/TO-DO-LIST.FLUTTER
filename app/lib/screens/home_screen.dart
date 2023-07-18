@@ -21,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         title: const Text('To Do List'),
@@ -29,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       //'body' specifies the content of the screen
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -80,6 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Padding(
               padding: const EdgeInsets.fromLTRB(30, 200, 290, 10),
               child: FloatingActionButton(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                 backgroundColor: const Color.fromARGB(255, 105, 7, 7),
                 child: const Icon(Icons.add),
                 onPressed: () {
