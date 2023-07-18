@@ -15,13 +15,12 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String printText(String text) {
-    print(text);
-    return 'Hello $text';
+    print('Hello World');
+    return ('');
   }
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
         title: const Text('To Do List'),
@@ -81,11 +80,12 @@ class _HomeScreenState extends State<HomeScreen> {
             Padding(
               padding: const EdgeInsets.fromLTRB(30, 200, 290, 10),
               child: FloatingActionButton(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5)),
                 backgroundColor: const Color.fromARGB(255, 105, 7, 7),
                 child: const Icon(Icons.add),
                 onPressed: () {
-                  printText('Hello World');
+                  printText('');
                 },
               ),
             ),
