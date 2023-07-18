@@ -1,7 +1,5 @@
 import 'package:app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
-import 'dart:io';
 import 'package:app/screens/forgot_password.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -29,25 +27,6 @@ class _LoginScreenState extends State<LoginScreen>
     super.dispose();
   }
   // Cleans up resources when the widget is removed from the tree
-
-  Future<void> _initDatabase() async {
-    Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    // Gets the directory for storing the database file
-
-    String path = "${documentsDirectory.path}/users.db";
-    // Specifies the path for the database file
-
-    _database = await openDatabase(
-      path,
-      version: 1,
-      onCreate: (Database db, int version) async {
-        await db.execute(
-          "CREATE TABLE Users (PRIMARY KEY AUTOINCREMENT, email TEXT, password TEXT)",
-        );
-      },
-    );
-    // Initializes the database and creates a Users table if it doesn't exist
-  }
 
   Future<void> _login() async {
     String email = _emailController.text;
