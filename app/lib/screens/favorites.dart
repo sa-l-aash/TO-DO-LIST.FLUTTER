@@ -12,17 +12,17 @@ class Favorites extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 105, 7, 7),
         automaticallyImplyLeading: false,
       ),
-      body:  SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-           const  Text(''),
+            const Text(''),
             const Text(
               'These are your favorite tasks',
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               textAlign: TextAlign.right,
             ),
-           const Text(''),
-              ClipRRect(
+            const Text(''),
+            ClipRRect(
               borderRadius: BorderRadius.circular(40),
               child: const Image(
                 fit: BoxFit.cover,
@@ -31,7 +31,7 @@ class Favorites extends StatelessWidget {
                 height: 300,
               ),
             ),
-           const Text(''),
+            const Text(''),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 30),
               child: TextField(

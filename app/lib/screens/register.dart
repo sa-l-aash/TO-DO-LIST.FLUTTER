@@ -34,8 +34,8 @@ class _RegisterState extends State<Register> {
     final String password = _passwordController.text;
     final String confirmPassword = _confirmPasswordController.text;
 
-if(name == null) {
-ScaffoldMessenger.of(context).showSnackBar(
+    if (name == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           behavior: SnackBarBehavior.floating,
           duration: Duration(seconds: 2),
@@ -44,7 +44,7 @@ ScaffoldMessenger.of(context).showSnackBar(
         ),
       );
       return;
-} else if (password != confirmPassword) {
+    } else if (password != confirmPassword) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           behavior: SnackBarBehavior.floating,
@@ -54,7 +54,7 @@ ScaffoldMessenger.of(context).showSnackBar(
         ),
       );
       return;
-    } else{
+    } else {
       await db.insert('Users', {
         'name': name,
         ' email': email,
