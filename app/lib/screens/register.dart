@@ -29,12 +29,22 @@ class _RegisterState extends State<Register> {
 
   void _register() async {
     final db = await _dataBase();
-    final String name = _nameController.text;
+    final String? name = _nameController.text;
     final String email = _emailController.text;
     final String password = _passwordController.text;
     final String confirmPassword = _confirmPasswordController.text;
 
-    if (password != confirmPassword) {
+if(name == null) {
+ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          behavior: SnackBarBehavior.floating,
+          duration: Duration(seconds: 2),
+          backgroundColor: Colors.blue,
+          content: Text('ERROR: name should not be blank'),
+        ),
+      );
+      return;
+} else if (password != confirmPassword) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           behavior: SnackBarBehavior.floating,
@@ -44,7 +54,7 @@ class _RegisterState extends State<Register> {
         ),
       );
       return;
-    } else {
+    } else{
       await db.insert('Users', {
         'name': name,
         ' email': email,
