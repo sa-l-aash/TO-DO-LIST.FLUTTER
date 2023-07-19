@@ -33,18 +33,22 @@ class _RegisterState extends State<Register> {
     final String email = _emailController.text;
     final String password = _passwordController.text;
     final String confirmPassword = _confirmPasswordController.text;
+    
+    String? validatePassword(String value) {
+      RegExp regex = RegExp(
+          r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+      if (value.isEmpty) {
+        return 'Please enter password';
+      } else {
+        if (!regex.hasMatch(value)) {
+          return 'Enter valid password';
+        } else {
+          return null;
+        }
+      }
+    }
 
-    if (name == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          behavior: SnackBarBehavior.floating,
-          duration: Duration(seconds: 2),
-          backgroundColor: Colors.blue,
-          content: Text('ERROR: name should not be blank'),
-        ),
-      );
-      return;
-    } else if (password != confirmPassword) {
+    if (password != confirmPassword) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           behavior: SnackBarBehavior.floating,
