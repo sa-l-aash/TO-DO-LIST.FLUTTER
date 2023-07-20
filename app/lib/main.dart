@@ -1,4 +1,5 @@
 //this is very important
+import 'package:app/screens/tasks_page.dart';
 import 'package:flutter/material.dart';
 //importing home_screen
 import 'package:app/screens/home_screen.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       //   darkTheme: ThemeData(brightness: Brightness.dark),
 
       //   themeMode: ThemeMode.system,
-      home: const HomeScreen(),
+      home: const TasksPage(),
     );
   }
 }
