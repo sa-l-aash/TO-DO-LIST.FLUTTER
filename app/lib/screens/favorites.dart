@@ -1,5 +1,6 @@
 import 'package:app/screens/completed.dart';
 import 'package:app/screens/home_screen.dart';
+import 'package:app/screens/tasks_page.dart';
 import 'package:flutter/material.dart';
 
 class Favorites extends StatelessWidget {
@@ -54,7 +55,7 @@ class Favorites extends StatelessWidget {
             icon: IconButton(
               onPressed: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const HomeScreen()));
+                    builder: (context) => const TasksPage()));
               },
               icon: const Icon(
                 Icons.home,

@@ -3,6 +3,7 @@ import 'package:app/screens/completed.dart';
 import 'package:app/screens/favorites.dart';
 import 'package:app/screens/login_screen.dart';
 import 'package:app/screens/register.dart';
+import 'package:app/screens/tasks_page.dart';
 import 'package:flutter/material.dart';
 //import 'package:path/path.dart';
 
@@ -100,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: IconButton(
               onPressed: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const HomeScreen()));
+                    builder: (context) => const TasksPage()));
               },
               icon: const Icon(
                 Icons.home,
