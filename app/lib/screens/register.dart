@@ -27,42 +27,47 @@ class _RegisterState extends State<Register> {
     );
   }
 
+  void mySnackBar(String myText, Color myBackgroundColor) {
+    final snackBar = SnackBar(
+      content: Text(
+        myText,
+        style: const TextStyle(
+          color: Color.fromARGB(255, 255, 255, 255),
+        ),
+      ),
+      backgroundColor: myBackgroundColor,
+      duration: const Duration(seconds: 2),
+      behavior: SnackBarBehavior.floating,
+    );
+
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+  }
+
   void _register() async {
     final db = await _dataBase();
-    final String? name = _nameController.text;
+    final String name = _nameController.text;
     final String email = _emailController.text;
     final String password = _passwordController.text;
     final String confirmPassword = _confirmPasswordController.text;
-    
-    String? validatePassword(String value) {
-      RegExp regex = RegExp(
-          r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
-      if (value.isEmpty) {
-        return 'Please enter password';
-      } else {
-        if (!regex.hasMatch(value)) {
-          return 'Enter valid password';
-        } else {
-          return null;
-        }
-      }
-    }
-
-    if (password != confirmPassword) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          behavior: SnackBarBehavior.floating,
-          duration: Duration(seconds: 2),
-          backgroundColor: Colors.blue,
-          content: Text('ERROR: Passwords do not match '),
-        ),
-      );
+    mySnackBar('myText', Colors.blue);
+    if (_nameController.text.isEmpty) {
+      print('empty name field');
+      mySnackBar('name is field empty', Colors.red);
+    } else if (_emailController.text.isEmpty) {
+      mySnackBar('Email field is empty', Colors.red);
+    } else if (_passwordController.text.isEmpty) {
+      mySnackBar('Password field is empty', Colors.red);
+    } else if (_confirmPasswordController.text.isEmpty) {
+      mySnackBar('Confirm password field is empty', Colors.red);
+    } else if (password != confirmPassword) {
+      mySnackBar('passwords do not match!', Colors.red);
       return;
     } else {
       await db.insert('Users', {
         'name': name,
         ' email': email,
         ' password': password,
+        'confirm password': confirmPassword,
       });
       Navigator.pushReplacement<void, void>(context,
           MaterialPageRoute<void>(builder: (context) => const LoginScreen()));

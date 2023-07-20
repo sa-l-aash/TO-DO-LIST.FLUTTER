@@ -36,27 +36,19 @@ class _LoginScreenState extends State<LoginScreen>
     List<Map<String, dynamic>> users = await _database.rawQuery(
       "SELECT * FROM Users WHERE email = '$email' AND password = '$password'",
     );
+
     // Queries the database to find matching user credentials
-
-    if (users.isNotEmpty) {
-      // Login successful
-      // Perform necessary actions (e.g., navigate to another screen)
-      // ignore: use_build_context_synchronously
-      Navigator.pushReplacement<void, void>(
-        context,
-        MaterialPageRoute<void>(
-          builder: (BuildContext context) => const HomeScreen(),
-        ),
+    if (_emailController.text.isEmpty) {
+      const SnackBar(
+        content: Text('email is required'),
       );
-      const snackBar = SnackBar(
-        content: Text('Login is Successful!'),
+    } else if (_passwordController.text.isEmpty) {
+      const SnackBar(
+        content: Text('password is required'),
       );
-
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     } else {
-      // Login failed
-      //perform other functions
-      print("Login Failed");
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const HomeScreen()));
     }
   }
 
@@ -89,33 +81,48 @@ class _LoginScreenState extends State<LoginScreen>
             ),
             const Text(''),
             const Text(''),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 6),
-              child: TextField(
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 6),
+              child: TextFormField(
                 maxLength: 30,
                 cursorColor: Colors.blue,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Email',
                   labelStyle:
                       TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
                   border: OutlineInputBorder(),
                 ),
+                validator: (text) {
+                  if (text == null || text.isEmpty) {
+                    const SnackBar(
+                      content: Text('email is needed'),
+                      behavior: SnackBarBehavior.floating,
+                    );
+                  }
+                  return null;
+                },
               ),
             ),
             const Text(''),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 6),
-              child: TextField(
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 6),
+              child: TextFormField(
                 obscureText: true,
                 maxLength: 30,
                 cursorColor: Colors.blue,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Password',
                   labelStyle: TextStyle(
                     color: Color.fromARGB(255, 255, 255, 255),
                   ),
                   border: OutlineInputBorder(),
                 ),
+                validator: (text) {
+                  if (text == null || text.isEmpty) {
+                    return 'Text is empty';
+                  }
+                  return null;
+                },
               ),
             ),
             const Row(
@@ -146,20 +153,7 @@ class _LoginScreenState extends State<LoginScreen>
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   child: ElevatedButton(
                     onPressed: () {
-                      Colors.black;
-                      //this routes to the homescreen
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const HomeScreen()));
-
-                      const snackBar = SnackBar(
-                        duration: Duration(seconds: 1),
-                        behavior: SnackBarBehavior.floating,
-                        margin: EdgeInsets.fromLTRB(0, 0, 0, 635),
-                        backgroundColor: Colors.blue,
-                        content: Text('Login  successful'),
-                      );
-
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      _login();
                     },
                     child: const Text(
                       'Login',
