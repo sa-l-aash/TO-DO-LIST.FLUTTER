@@ -2,7 +2,7 @@
 import 'package:app/screens/tasks_page.dart';
 import 'package:flutter/material.dart';
 //importing home_screen
-import 'package:app/screens/home_screen.dart';
+// import 'package:app/screens/home_screen.dart';
 import 'package:flutter/services.dart';
 
 //this is the main method
