@@ -66,7 +66,7 @@ class _TasksPageState extends State<TasksPage> {
     showDialog(
       context: context,
       builder: (context) {
-        Null id;
+        int id;
         String title = '';
         String description = '';
 
@@ -107,6 +107,12 @@ class _TasksPageState extends State<TasksPage> {
     );
   }
 
+  void _deleteItem(int index) {
+    setState(() {
+      tasks.removeAt(index);
+    });
+  }
+
   Widget _buildList() {
     return ListView.builder(
         //this moves the textfield away from the edge of the screen
@@ -119,23 +125,24 @@ class _TasksPageState extends State<TasksPage> {
           final task = tasks[index];
           return Card(
             child: ListTile(
-              leading: IconButton(
-                onPressed: () {},
-                icon: const Icon(Icons.favorite),
-              ),
-              tileColor: const Color.fromARGB(255, 105, 7, 7),
-              title: Text(task.title),
-              subtitle: Text(task.description),
-              //this makes the textfields bigger or smaller
-              dense: false,
-              trailing: Checkbox(
-                  value: task.isDone,
-                  onChanged: (value) {
-                    setState(() {
-                      tasks[index].isDone = value!;
-                    });
-                  }),
-            ),
+                leading: Checkbox(
+                    value: task.isDone,
+                    onChanged: (value) {
+                      setState(() {
+                        tasks[index].isDone = value!;
+                      });
+                    }),
+                // tileColor: const Color.fromARGB(255, 105, 7, 7),
+                title: Text(task.title),
+                subtitle: Text(task.description),
+                //this makes the textfields bigger or smaller
+                dense: false,
+                trailing: IconButton(
+                  icon: const Icon(Icons.delete),
+                  onPressed: () {
+                    _deleteItem(index);
+                  },
+                )),
           );
         });
   }
