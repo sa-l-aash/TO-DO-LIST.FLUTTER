@@ -1,4 +1,5 @@
-import 'package:app/screens/home_screen.dart';
+// import 'package:app/screens/home_screen.dart';
+import 'package:app/screens/tasks_page.dart';
 import 'package:flutter/material.dart';
 import 'package:app/screens/forgot_password.dart';
 import 'package:sqflite/sqflite.dart';
@@ -48,7 +49,7 @@ class _LoginScreenState extends State<LoginScreen>
       );
     } else {
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const HomeScreen()));
+          MaterialPageRoute(builder: (context) => const TasksPage()));
     }
   }
 

@@ -1,5 +1,6 @@
 //this imports the ui components and themes
-import 'package:app/screens/home_screen.dart';
+// import 'package:app/screens/home_screen.dart';
+import 'package:app/screens/tasks_page.dart';
 import 'package:flutter/material.dart';
 
 class ForgotPassword extends StatelessWidget {
@@ -93,7 +94,7 @@ class ForgotPassword extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const HomeScreen()));
+                          builder: (context) => const TasksPage()));
                       const snackBar = SnackBar(
                         duration: Duration(seconds: 1),
                         backgroundColor: Colors.blue,
