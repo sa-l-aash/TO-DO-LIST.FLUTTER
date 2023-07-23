@@ -40,7 +40,7 @@ class _RegisterState extends State<Register> {
       behavior: SnackBarBehavior.floating,
     );
 
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   void _register() async {
