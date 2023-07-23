@@ -29,6 +29,22 @@ class _LoginScreenState extends State<LoginScreen>
   }
   // Cleans up resources when the widget is removed from the tree
 
+  void mySnackBar(String myText, Color myBackgroundColor) {
+    final snackBar = SnackBar(
+      content: Text(
+        myText,
+        style: const TextStyle(
+          color: Color.fromARGB(255, 255, 255, 255),
+        ),
+      ),
+      backgroundColor: myBackgroundColor,
+      duration: const Duration(seconds: 2),
+      behavior: SnackBarBehavior.floating,
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   Future<void> _login() async {
     String email = _emailController.text;
     String password = _passwordController.text;
@@ -40,16 +56,12 @@ class _LoginScreenState extends State<LoginScreen>
 
     // Queries the database to find matching user credentials
     if (_emailController.text.isEmpty) {
-      const SnackBar(
-        content: Text('email is required'),
-      );
+      mySnackBar('Email is field empty', Colors.red);
     } else if (_passwordController.text.isEmpty) {
-      const SnackBar(
-        content: Text('password is required'),
-      );
+      mySnackBar('Password field is empty', Colors.red);
     } else {
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const TasksPage()));
+      Navigator.pushReplacement<void, void>(context,
+          MaterialPageRoute<void>(builder: (context) => const TasksPage()));
     }
   }
 
@@ -100,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen>
                       behavior: SnackBarBehavior.floating,
                     );
                   }
-                  return null;
+                  return 'text';
                 },
               ),
             ),
@@ -122,7 +134,7 @@ class _LoginScreenState extends State<LoginScreen>
                   if (text == null || text.isEmpty) {
                     return 'Text is empty';
                   }
-                  return null;
+                  return 'text';
                 },
               ),
             ),
