@@ -49,18 +49,20 @@ class _RegisterState extends State<Register> {
     final String email = _emailController.text;
     final String password = _passwordController.text;
     final String confirmPassword = _confirmPasswordController.text;
-    mySnackBar('myText', Colors.blue);
+    print('Name: $name');
+    print('Email: $email');
+    print('Password: $password');
+    print('Confirm Password: $confirmPassword');
     if (_nameController.text.isEmpty) {
-      print('empty name field');
       mySnackBar('name is field empty', Colors.red);
     } else if (_emailController.text.isEmpty) {
       mySnackBar('Email field is empty', Colors.red);
     } else if (_passwordController.text.isEmpty) {
       mySnackBar('Password field is empty', Colors.red);
     } else if (_confirmPasswordController.text.isEmpty) {
-      mySnackBar('Confirm password field is empty', Colors.red);
+      mySnackBar('Confirm Password field is empty', Colors.red);
     } else if (password != confirmPassword) {
-      mySnackBar('passwords do not match!', Colors.red);
+      mySnackBar('Passwords do not match!', Colors.red);
       return;
     } else {
       await db.insert('Users', {
@@ -69,6 +71,7 @@ class _RegisterState extends State<Register> {
         ' password': password,
         'confirm password': confirmPassword,
       });
+
       Navigator.pushReplacement<void, void>(context,
           MaterialPageRoute<void>(builder: (context) => const LoginScreen()));
     }
