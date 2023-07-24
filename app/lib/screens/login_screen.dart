@@ -1,8 +1,9 @@
-// import 'package:app/screens/home_screen.dart';
 import 'package:app/screens/tasks_page.dart';
 import 'package:flutter/material.dart';
 import 'package:app/screens/forgot_password.dart';
-import 'package:sqflite/sqflite.dart';
+// import 'package:sqflite/sqflite.dart';
+import 'package:app/Globals/Globals.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -16,17 +17,6 @@ class _LoginScreenState extends State<LoginScreen>
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  late Database _database;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
   // Cleans up resources when the widget is removed from the tree
 
   void mySnackBar(String myText, Color myBackgroundColor) {
@@ -46,22 +36,27 @@ class _LoginScreenState extends State<LoginScreen>
   }
 
   Future<void> _login() async {
-    String email = _emailController.text;
-    String password = _passwordController.text;
-    // Retrieves the email and password entered by the user
-
-    List<Map<String, dynamic>> users = await _database.rawQuery(
-      "SELECT * FROM Users WHERE email = '$email' AND password = '$password'",
-    );
-
     // Queries the database to find matching user credentials
     if (_emailController.text.isEmpty) {
-      mySnackBar('Email is field empty', Colors.red);
+      mySnackBar('Email field is empty', Colors.red);
     } else if (_passwordController.text.isEmpty) {
       mySnackBar('Password field is empty', Colors.red);
     } else {
-      Navigator.pushReplacement<void, void>(context,
-          MaterialPageRoute<void>(builder: (context) => const TasksPage()));
+      String email = _emailController.text;
+      String password = _passwordController.text;
+      // Retrieves the email and password entered by the user
+
+      List<Map<String, dynamic>> users = await todoDB.rawQuery(
+        "SELECT * FROM Users WHERE email = '$email' AND password = '$password'",
+      );
+
+      if (users.isEmpty) {
+        Fluttertoast.showToast(msg: 'Login unsuccessful!');
+      } else {
+        Fluttertoast.showToast(msg: 'Login successful');
+        Navigator.pushReplacement<void, void>(context,
+            MaterialPageRoute<void>(builder: (context) => const TasksPage()));
+      }
     }
   }
 
@@ -97,6 +92,7 @@ class _LoginScreenState extends State<LoginScreen>
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 6),
               child: TextFormField(
+                controller: _emailController,
                 maxLength: 30,
                 cursorColor: Colors.blue,
                 decoration: const InputDecoration(
@@ -105,21 +101,14 @@ class _LoginScreenState extends State<LoginScreen>
                       TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
                   border: OutlineInputBorder(),
                 ),
-                validator: (text) {
-                  if (text == null || text.isEmpty) {
-                    const SnackBar(
-                      content: Text('email is needed'),
-                      behavior: SnackBarBehavior.floating,
-                    );
-                  }
-                  return 'text';
-                },
+               
               ),
             ),
             const Text(''),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 6),
               child: TextFormField(
+                controller: _passwordController,
                 obscureText: true,
                 maxLength: 30,
                 cursorColor: Colors.blue,
@@ -130,12 +119,7 @@ class _LoginScreenState extends State<LoginScreen>
                   ),
                   border: OutlineInputBorder(),
                 ),
-                validator: (text) {
-                  if (text == null || text.isEmpty) {
-                    return 'Text is empty';
-                  }
-                  return 'text';
-                },
+               
               ),
             ),
             const Row(

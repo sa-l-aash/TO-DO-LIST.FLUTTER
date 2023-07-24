@@ -1,6 +1,7 @@
 import 'package:app/screens/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
+// import 'package:sqflite/sqflite.dart';
+import 'package:app/Globals/Globals.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -14,18 +15,6 @@ class _RegisterState extends State<Register> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
-
-  Future<Database> _dataBase() async {
-    return await openDatabase(
-      'todo.db',
-      version: 1,
-      onCreate: (Database db, int version) {
-        db.execute(
-          'CREATE TABLE Users (name TEXT, email VARCHAR, password VARCHAR)',
-        );
-      },
-    );
-  }
 
   void mySnackBar(String myText, Color myBackgroundColor) {
     final snackBar = SnackBar(
@@ -43,16 +32,20 @@ class _RegisterState extends State<Register> {
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
+  Future<void> viewTable() async {
+    print(await todoDB.query(userTable));
+  }
+
+  Future<void> deleteAll() async {
+    print(await todoDB.delete(userTable));
+  }
+
   void _register() async {
-    final db = await _dataBase();
     final String name = _nameController.text;
     final String email = _emailController.text;
     final String password = _passwordController.text;
     final String confirmPassword = _confirmPasswordController.text;
-    print('Name: $name');
-    print('Email: $email');
-    print('Password: $password');
-    print('Confirm Password: $confirmPassword');
+
     if (_nameController.text.isEmpty) {
       mySnackBar('name is field empty', Colors.red);
     } else if (_emailController.text.isEmpty) {
@@ -65,11 +58,10 @@ class _RegisterState extends State<Register> {
       mySnackBar('Passwords do not match!', Colors.red);
       return;
     } else {
-      await db.insert('Users', {
+      await todoDB.insert(userTable, {
         'name': name,
         ' email': email,
         ' password': password,
-        'confirm password': confirmPassword,
       });
 
       Navigator.pushReplacement<void, void>(context,
@@ -184,9 +176,7 @@ class _RegisterState extends State<Register> {
             const Text(''),
             const SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {
-                _register();
-              },
+              onPressed: _register,
               child: const Text(
                 'Register',
               ),
