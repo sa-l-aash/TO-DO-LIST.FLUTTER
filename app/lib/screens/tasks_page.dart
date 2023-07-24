@@ -25,7 +25,8 @@ class _TasksPageState extends State<TasksPage> {
   }
 
   Future<int> getId() async {
-    final result = await todoDB.rawQuery('SELECT MAX(id) as id FROM tasks');
+    final result =
+        await todoDB.rawQuery('SELECT MAX(id) as id FROM $tasksTable');
 
     int myid;
     if (result.single['id'] == null) {
@@ -67,7 +68,7 @@ class _TasksPageState extends State<TasksPage> {
   }
 
   Future<void> viewTaskDB() async {
-    print(await todoDB.query('tasks'));
+    print(await todoDB.query('$tasksTable'));
   }
 
   void showAddTaskDialog() {
@@ -109,12 +110,13 @@ class _TasksPageState extends State<TasksPage> {
     );
   }
 
-  void _deleteItem(int index) async {
+  Future<void> _deleteItem(int index) async {
+    int taskIdTODelete = tasks[index].id;
     setState(() {
       tasks.removeAt(index);
     });
 
-    await todoDB.delete('tasks', where: 'id = ?', whereArgs: [index]);
+    await todoDB.delete('tasks', where: 'id = ?', whereArgs: [taskIdTODelete]);
   }
 
   Widget _buildList() {
@@ -132,8 +134,8 @@ class _TasksPageState extends State<TasksPage> {
                 leading: Checkbox(
                     value: task.isDone,
                     onChanged: (value) {
-                      completed.add(task);
-                      tasks.remove(task);
+                      // completed.add(task);
+                      // tasks.remove(task);
                       setState(() {
                         tasks[index].isDone = value!;
                       });
@@ -164,7 +166,7 @@ class _TasksPageState extends State<TasksPage> {
       ),
       body: _buildList(),
       floatingActionButton: FloatingActionButton(
-        onPressed: showAddTaskDialog,
+        onPressed: viewTaskDB,
         child: const Icon(
           Icons.add,
         ),
@@ -182,7 +184,7 @@ class _TasksPageState extends State<TasksPage> {
               },
               icon: const Icon(
                 Icons.home,
-                color: Colors.grey,
+                color: Color.fromARGB(255, 255, 255, 255),
               ),
             ),
             label: 'Home',
@@ -194,7 +196,7 @@ class _TasksPageState extends State<TasksPage> {
                     MaterialPageRoute(builder: (context) => const Completed()));
               },
               icon: const Icon(Icons.check_box),
-              color: const Color.fromARGB(255, 255, 255, 255),
+              color: Colors.grey,
             ),
             label: 'completed',
           ),

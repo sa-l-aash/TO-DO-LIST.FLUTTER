@@ -16,7 +16,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   String printText(String text) {
-    print('Hello World');
     return ('');
   }
 
@@ -100,8 +99,8 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: IconButton(
               onPressed: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const TasksPage()));
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => const TasksPage()));
               },
               icon: const Icon(
                 Icons.home,
