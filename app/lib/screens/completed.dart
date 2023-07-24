@@ -14,12 +14,12 @@ class Completed extends StatelessWidget {
         automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
+        padding:const EdgeInsets.symmetric(horizontal:40),
         child: Column(children: <Widget>[
           const Text(''),
           const Text(
-            'You have completed the following tasks',
+            'These are your completed tasks',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            textAlign: TextAlign.right,
           ),
           const Text(''),
           ClipRRect(
@@ -32,15 +32,6 @@ class Completed extends StatelessWidget {
             ),
           ),
           const Text(''),
-          const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: TextField(
-                  decoration: InputDecoration(
-                prefixIcon: Icon(Icons.check_box, color: Colors.blue),
-                labelText: 'Task 1',
-                labelStyle: TextStyle(color: Colors.white),
-                border: OutlineInputBorder(),
-              ))),
         ]),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -50,8 +41,8 @@ class Completed extends StatelessWidget {
           BottomNavigationBarItem(
             icon: IconButton(
               onPressed: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const TasksPage()));
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => const TasksPage()));
               },
               icon: const Icon(
                 Icons.home,

@@ -14,6 +14,7 @@ class Favorites extends StatelessWidget {
         automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(
           children: <Widget>[
             const Text(''),
@@ -33,17 +34,7 @@ class Favorites extends StatelessWidget {
               ),
             ),
             const Text(''),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30),
-              child: TextField(
-                decoration: InputDecoration(
-                  prefixIcon: Icon(Icons.favorite, color: Colors.red),
-                  labelText: 'Task 1',
-                  labelStyle: TextStyle(color: Colors.white),
-                  border: OutlineInputBorder(),
-                ),
-              ),
-            ),
+           
           ],
         ),
       ),
