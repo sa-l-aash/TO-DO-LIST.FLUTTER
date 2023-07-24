@@ -19,12 +19,13 @@ void main() async {
     version: 2,
     onCreate: (Database db, int version) async{
       await db.execute(
-        'CREATE TABLE $userTable (name TEXT, email VARCHAR, password VARCHAR)',
+        'CREATE TABLE $userTable ( $userTBName TEXT, $userTBEmail VARCHAR, $userTBPassword VARCHAR)',
       );
     },
     onUpgrade: (Database db, int oldVersion, int newVersion)async{
         await db.execute(
-          'CREATE TABLE tasks(id INTEGER PRIMARY KEY , title TEXT, description VARCHAR , isDone INTEGER)');
+          'CREATE TABLE $tasksTable($tasksTBId INTEGER PRIMARY KEY , $tasksTBTitle TEXT, $tasksTBDescription VARCHAR , $tasksTBIsDone INTEGER)'
+          );
     }
   );
   //its a function that runs everything on the target device
