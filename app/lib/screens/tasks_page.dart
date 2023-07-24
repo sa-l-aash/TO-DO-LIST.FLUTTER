@@ -1,10 +1,11 @@
+import 'package:app/Globals/Globals.dart';
 import 'package:app/screens/completed.dart';
 import 'package:app/screens/favorites.dart';
 import 'package:app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:app/models/task.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:path/path.dart' as path;
+// import 'package:path/path.dart' as path;
 import 'package:fluttertoast/fluttertoast.dart';
 
 class TasksPage extends StatefulWidget {
@@ -15,6 +16,7 @@ class TasksPage extends StatefulWidget {
 
 class _TasksPageState extends State<TasksPage> {
   List<Task> tasks = [];
+  List<Task> completed = [];
 
   @override
   void initState() {
@@ -22,19 +24,21 @@ class _TasksPageState extends State<TasksPage> {
     _loadTasksFromDB();
   }
 
+  Future<int> getId() async {
+    final result = await todoDB.rawQuery('SELECT MAX(id) as id FROM tasks');
+
+    int myid;
+    if (result.single['id'] == null) {
+      myid = 1;
+    } else {
+      myid = (result.single['id'] as int) + 1;
+    }
+
+    return myid;
+  }
+
   void _loadTasksFromDB() async {
-    //loads the tasks from the sqflite and updates the state of the widget
-    final database = await openDatabase(
-      path.join(await getDatabasesPath(), 'todo.db'),
-//if the db is not found then the oncreate is used
-      onCreate: (db, version) {
-        //isDone is an integer because it is bool so 0 or 1
-        db.execute(
-            'CREATE TABLE tasks(id INTEGER PRIMARY KEY , title TEXT, description VARCHAR , isDone INTEGER)');
-      },
-      version: 1,
-    );
-    final List<Map<String, dynamic>> maps = await database.query('tasks');
+    final List<Map<String, dynamic>> maps = await todoDB.query('tasks');
     setState(() {
       tasks = List.generate(
           maps.length,
@@ -46,30 +50,30 @@ class _TasksPageState extends State<TasksPage> {
     });
   }
 
-  void saveTaskToDB(Task task) async {
+  String title = '';
+  String description = '';
+  void saveTaskToDB() async {
+    final task =
+        Task(id: await getId(), title: title, description: description);
+
+    tasks.add(task);
+
     //this method saves tasks to the database
-    final database = await openDatabase(
-      path.join(await getDatabasesPath(), 'todo.db'),
-      onCreate: (db, version) => {
-        db.execute(
-            'CREATE TABLE tasks(id INTEGER PRIMARY KEY , title TEXT, description VARCHAR , isDone INTEGER)')
-      },
-      version: 1,
-    );
-    await database.insert('tasks', task.toMap(),
+
+    await todoDB.insert('tasks', task.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
     //works the same way as the snackbar
     Fluttertoast.showToast(msg: 'Task Added Successfully');
+  }
+
+  Future<void> viewTaskDB() async {
+    print(await todoDB.query('tasks'));
   }
 
   void showAddTaskDialog() {
     showDialog(
       context: context,
       builder: (context) {
-        int id;
-        String title = '';
-        String description = '';
-
         //this displays above another page
         return AlertDialog(
             title: const Text('Add Task'),
@@ -89,17 +93,15 @@ class _TasksPageState extends State<TasksPage> {
             actions: [
               TextButton(
                 onPressed: () {
-                  final newTask =
-                      Task(id: 2, title: title, description: description);
                   setState(() {
-                    tasks.add(newTask);
+                    saveTaskToDB();
                     Navigator.of(context).pop();
                   });
                 },
                 child: const Text('Save '),
               ),
               TextButton(
-                onPressed: () => Navigator.of(context).pop,
+                onPressed: () => Navigator.pop(context),
                 child: const Text('Cancel'),
               )
             ]);
@@ -107,10 +109,12 @@ class _TasksPageState extends State<TasksPage> {
     );
   }
 
-  void _deleteItem(int index) {
+  void _deleteItem(int index) async {
     setState(() {
       tasks.removeAt(index);
     });
+
+    await todoDB.delete('tasks', where: 'id = ?', whereArgs: [index]);
   }
 
   Widget _buildList() {
@@ -128,6 +132,8 @@ class _TasksPageState extends State<TasksPage> {
                 leading: Checkbox(
                     value: task.isDone,
                     onChanged: (value) {
+                      completed.add(task);
+                      tasks.remove(task);
                       setState(() {
                         tasks[index].isDone = value!;
                       });
