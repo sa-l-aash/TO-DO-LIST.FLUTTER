@@ -1,7 +1,10 @@
 //this imports the ui components and themes
 // import 'package:app/screens/home_screen.dart';
+import 'package:app/Globals/Globals.dart';
 import 'package:app/screens/tasks_page.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:sqflite/sqflite.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
@@ -10,10 +13,9 @@ class ForgotPassword extends StatefulWidget {
 }
 
 class _ForgotPassword extends State<ForgotPassword> {
-  // final _nameController = TextEditingController();
-  // final _emailController = TextEditingController();
-  // final _passwordController = TextEditingController();
-  // final _confirmPasswordController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _newPasswordController = TextEditingController();
+  final _confirmNewPasswordController = TextEditingController();
 
   void mySnackBar(String myText, Color myBackgroundColor) {
     final snackBar = SnackBar(
@@ -29,6 +31,35 @@ class _ForgotPassword extends State<ForgotPassword> {
     );
 
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  Future<void> _login() async {
+    // Queries the database to find matching user credentials
+    if (_emailController.text.isEmpty) {
+      mySnackBar('Email field is empty', Colors.red);
+    } else if (_newPasswordController.text.isEmpty) {
+      mySnackBar('New Password field is empty', Colors.red);
+    } else if (_confirmNewPasswordController.text.isEmpty) {
+      mySnackBar('Confirm New Password field is empty', Colors.red);
+    } else if (_newPasswordController != _confirmNewPasswordController) {
+      mySnackBar('passwords do not match', Colors.red);
+    } else {
+      String email = _emailController.text;
+      String password = _newPasswordController.text;
+      // Retrieves the email and password entered by the user
+
+      List<Map<String, dynamic>> users = await todoDB.rawQuery(
+        "SELECT * FROM Users WHERE email = '$email' AND password = '$password'",
+      );
+
+      if (users.isEmpty) {
+        Fluttertoast.showToast(msg: 'Login unsuccessful!');
+      } else {
+        Fluttertoast.showToast(msg: 'Login successful');
+        Navigator.pushReplacement<void, void>(context,
+            MaterialPageRoute<void>(builder: (context) => const TasksPage()));
+      }
+    }
   }
 
   @override
@@ -56,12 +87,13 @@ class _ForgotPassword extends State<ForgotPassword> {
               ),
             ),
             const Text(''),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 6),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 6),
               child: TextField(
+                controller: _emailController,
                 maxLength: 30,
                 cursorColor: Colors.blue,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Email',
                   labelStyle:
                       TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
@@ -70,13 +102,14 @@ class _ForgotPassword extends State<ForgotPassword> {
               ),
             ),
             const Text(''),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 6),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 6),
               child: TextField(
+                controller: _newPasswordController,
                 obscureText: true,
                 maxLength: 30,
                 cursorColor: Colors.blue,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'New Password',
                   labelStyle: TextStyle(
                     color: Color.fromARGB(255, 255, 255, 255),
@@ -96,13 +129,14 @@ class _ForgotPassword extends State<ForgotPassword> {
               ],
             ),
             const Text(''),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 6),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 6),
               child: TextField(
+                controller: _confirmNewPasswordController,
                 obscureText: true,
                 maxLength: 30,
                 cursorColor: Colors.blue,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Confirm New Password',
                   labelStyle: TextStyle(
                     color: Color.fromARGB(255, 255, 255, 255),
@@ -119,16 +153,7 @@ class _ForgotPassword extends State<ForgotPassword> {
                   padding: const EdgeInsets.all(10.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const TasksPage()));
-                      const snackBar = SnackBar(
-                        duration: Duration(seconds: 1),
-                        backgroundColor: Colors.blue,
-                        behavior: SnackBarBehavior.floating,
-                        margin: EdgeInsets.fromLTRB(0, 0, 0, 635),
-                        content: Text('Login Successful'),
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      _login();
                     },
                     child: const Text('Login'),
                   ),
