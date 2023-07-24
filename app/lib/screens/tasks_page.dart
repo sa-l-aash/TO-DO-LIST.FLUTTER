@@ -130,28 +130,35 @@ class _TasksPageState extends State<TasksPage> {
           );
           final task = tasks[index];
           return Card(
-            child: ListTile(
-                leading: Checkbox(
-                    value: task.isDone,
-                    onChanged: (value) {
-                      // completed.add(task);
-                      // tasks.remove(task);
-                      setState(() {
-                        tasks[index].isDone = value!;
-                      });
-                    }),
-                // tileColor: const Color.fromARGB(255, 105, 7, 7),
-                title: Text(task.title),
-                subtitle: Text(task.description),
-                //this makes the textfields bigger or smaller
-                dense: false,
-                trailing: IconButton(
-                  icon: const Icon(Icons.delete),
-                  onPressed: () {
-                    _deleteItem(index);
-                  },
-                )),
-          );
+              child: ListTile(
+            leading: Checkbox(
+                value: task.isDone,
+                onChanged: (value) {
+                  // completed.add(task);
+                  // tasks.remove(task);
+                  setState(() {
+                    tasks[index].isDone = value!;
+                  });
+                }),
+            // tileColor: const Color.fromARGB(255, 105, 7, 7),
+            title: Text(task.title),
+            subtitle: Text(task.description),
+            //this makes the textfields bigger or smaller
+            dense: false,
+
+            trailing: Wrap(spacing: 12, children: <Widget>[
+              IconButton(
+                icon: const Icon(Icons.favorite),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: const Icon(Icons.delete),
+                onPressed: () {
+                  _deleteItem(index);
+                },
+              )
+            ]),
+          ));
         });
   }
 
