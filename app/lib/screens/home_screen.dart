@@ -72,23 +72,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-            const Text(''),
-            const Text(
-              'Tasks show up here after you create them',
-              style: TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
-            ),
-            Padding(
-              padding: const EdgeInsets.fromLTRB(30, 200, 290, 10),
-              child: FloatingActionButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5)),
-                backgroundColor: const Color.fromARGB(255, 105, 7, 7),
-                child: const Icon(Icons.add),
-                onPressed: () {
-                  printText('');
-                },
-              ),
-            ),
+           
+           
           ],
         ),
       ),
