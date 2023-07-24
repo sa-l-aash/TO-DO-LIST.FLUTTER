@@ -3,8 +3,34 @@
 import 'package:app/screens/tasks_page.dart';
 import 'package:flutter/material.dart';
 
-class ForgotPassword extends StatelessWidget {
+class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
+  @override
+  State<ForgotPassword> createState() => _ForgotPassword();
+}
+
+class _ForgotPassword extends State<ForgotPassword> {
+  // final _nameController = TextEditingController();
+  // final _emailController = TextEditingController();
+  // final _passwordController = TextEditingController();
+  // final _confirmPasswordController = TextEditingController();
+
+  void mySnackBar(String myText, Color myBackgroundColor) {
+    final snackBar = SnackBar(
+      content: Text(
+        myText,
+        style: const TextStyle(
+          color: Color.fromARGB(255, 255, 255, 255),
+        ),
+      ),
+      backgroundColor: myBackgroundColor,
+      duration: const Duration(seconds: 2),
+      behavior: SnackBarBehavior.floating,
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
