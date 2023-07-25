@@ -5,8 +5,9 @@ import 'package:app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:app/models/task.dart';
 import 'package:sqflite/sqflite.dart';
-// import 'package:path/path.dart' as path;
 import 'package:fluttertoast/fluttertoast.dart';
+//This page allows a user to create,delete, update a task and displays them on the screen
+//it also stores the tasks in the database
 
 class TasksPage extends StatefulWidget {
   const TasksPage({super.key});
@@ -16,7 +17,6 @@ class TasksPage extends StatefulWidget {
 
 class _TasksPageState extends State<TasksPage> {
   List<Task> tasks = [];
-  List<Task> completed = [];
 
   @override
   void initState() {
@@ -29,9 +29,11 @@ class _TasksPageState extends State<TasksPage> {
         await todoDB.rawQuery('SELECT MAX(id) as id FROM $tasksTable');
 
     int myid;
+    //this assigns the first task with the id of 1 if the id is not equal to null
     if (result.single['id'] == null) {
       myid = 1;
     } else {
+      //then if the id 1 already exists the next tasks will be given the previous id number +1
       myid = (result.single['id'] as int) + 1;
     }
 
@@ -53,6 +55,7 @@ class _TasksPageState extends State<TasksPage> {
 
   String title = '';
   String description = '';
+  //this function saves tasks to the table tasks
   void saveTaskToDB() async {
     final task =
         Task(id: await getId(), title: title, description: description);
@@ -63,28 +66,33 @@ class _TasksPageState extends State<TasksPage> {
 
     await todoDB.insert('tasks', task.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
-    //works the same way as the snackbar
+    //Fluttertoast works the same way as the snackbar
     Fluttertoast.showToast(msg: 'Task Added Successfully');
   }
 
+//this function basically shows the items present in the task table when it is called
   Future<void> viewTaskDB() async {
     print(await todoDB.query('$tasksTable'));
   }
 
+//this function prompts a task dialog that allows a user to give the tasks a title and description
+//this alert dialog also has a save and cancel buttons to do just that
   void showAddTaskDialog() {
     showDialog(
       context: context,
       builder: (context) {
-        //this displays above another page
+        //AlertDialogs display above another page
         return AlertDialog(
             title: const Text('Add Task'),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                //one textfield to hold the title
                 TextField(
                   onChanged: (value) => title = value,
                   decoration: const InputDecoration(labelText: 'Title'),
                 ),
+                //another textfield to hold the description
                 TextField(
                   onChanged: (value) => description = value,
                   decoration: const InputDecoration(labelText: 'Description'),
@@ -109,13 +117,13 @@ class _TasksPageState extends State<TasksPage> {
       },
     );
   }
-
+//this function deletes a specific task with a specific index
   Future<void> _deleteItem(int index) async {
     int taskIdTODelete = tasks[index].id;
     setState(() {
       tasks.removeAt(index);
     });
-
+//it also deletes the task from the database
     await todoDB.delete('tasks', where: 'id = ?', whereArgs: [taskIdTODelete]);
   }
 
@@ -151,6 +159,7 @@ class _TasksPageState extends State<TasksPage> {
                 icon: const Icon(Icons.favorite),
                 onPressed: () {},
               ),
+              //this is an icon button that runs the '_deleteItem' function when pressed
               IconButton(
                 icon: const Icon(Icons.delete),
                 onPressed: () {
@@ -162,29 +171,34 @@ class _TasksPageState extends State<TasksPage> {
         });
   }
 
-//this is the ui
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Your Tasks'),
         backgroundColor: const Color.fromARGB(255, 105, 7, 7),
+        //this prevents the user from going to the previous page
         automaticallyImplyLeading: false,
       ),
       body: _buildList(),
+      //this is a button that runs the function 'showAddTaskDialog' 
+      //when the icons.add icon button is pressed
       floatingActionButton: FloatingActionButton(
-        onPressed: viewTaskDB,
+        onPressed: showAddTaskDialog,
         child: const Icon(
           Icons.add,
         ),
-      ),
+      ),//this aligns the icon to the center of the screen and makes it a float
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      //This is the bottom navigation bar with three icon buttons
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: const Color.fromARGB(255, 105, 7, 7),
         type: BottomNavigationBarType.fixed,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: IconButton(
+              //when pressed it navigates to the HomeScreen
               onPressed: () {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (context) => const HomeScreen()));
@@ -197,6 +211,7 @@ class _TasksPageState extends State<TasksPage> {
             label: 'Home',
           ),
           BottomNavigationBarItem(
+            //this routes to the completed page
             icon: IconButton(
               onPressed: () {
                 Navigator.of(context).pushReplacement(
@@ -210,6 +225,7 @@ class _TasksPageState extends State<TasksPage> {
           BottomNavigationBarItem(
             icon: IconButton(
               onPressed: () {
+                //this routes to the favorites page
                 Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: (context) => const Favorites()));
               },

@@ -1,3 +1,6 @@
+//this is a model of how the tasks will look like
+//thats why it is in the models folder
+
 class Task {
   int id;
   String title;

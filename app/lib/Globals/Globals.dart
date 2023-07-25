@@ -1,5 +1,5 @@
 import 'package:sqflite/sqflite.dart';
-
+//this page stores global variables to be used by various pages/screens
 late Database todoDB;
 String userTable = 'Users';
 String userTBName = 'Name';
