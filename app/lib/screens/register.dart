@@ -2,6 +2,7 @@ import 'package:app/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 // import 'package:sqflite/sqflite.dart';
 import 'package:app/Globals/Globals.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -73,7 +74,10 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Register page'),
+        title: Text(
+          'Register page',
+          style: GoogleFonts.aboreto().copyWith(fontSize: 30),
+        ),
         backgroundColor: const Color.fromARGB(255, 105, 7, 7),
       ),
       body: SingleChildScrollView(
@@ -82,9 +86,9 @@ class _RegisterState extends State<Register> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(''),
-            const Text(
+            Text(
               'Register',
-              style: TextStyle(fontSize: 28),
+              style: GoogleFonts.aboreto().copyWith(fontSize: 30),
             ),
             const Text(''),
             ClipRRect(
@@ -177,8 +181,9 @@ class _RegisterState extends State<Register> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _register,
-              child: const Text(
+              child: Text(
                 'Register',
+                style: GoogleFonts.aboreto().copyWith(fontSize: 25),
               ),
             ),
             const Text(''),
