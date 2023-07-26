@@ -1,7 +1,7 @@
 import 'package:app/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 // import 'package:sqflite/sqflite.dart';
-import 'package:app/Globals/Globals.dart';
+import 'package:app/Globals/globals_variables.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Register extends StatefulWidget {
@@ -148,15 +148,15 @@ class _RegisterState extends State<Register> {
                 ),
               ),
             ),
-            const Row(
+             Row(
               children: [
-                Padding(
+                const Padding(
                   padding: EdgeInsets.all(6.0),
                 ),
                 Text(
                   'Must have a min of 8 characters including letters and integers ',
-                  style: TextStyle(
-                      fontSize: 10, color: Color.fromARGB(221, 255, 255, 255)),
+                            style: GoogleFonts.aboreto().copyWith(fontSize: 8,fontWeight: FontWeight.w700),
+
                 ),
               ],
             ),

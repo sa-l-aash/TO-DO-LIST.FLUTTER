@@ -1,25 +1,32 @@
 import 'package:app/screens/favorites.dart';
-// import 'package:app/screens/home_screen.dart';
 import 'package:app/screens/tasks_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Completed extends StatelessWidget {
   const Completed({super.key});
   @override
   Widget build(BuildContext context) {
+    //scaffold is the size of your device
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Completed Tasks'),
+        title: Text(
+          'Completed Tasks',
+          style: GoogleFonts.aboreto().copyWith(fontSize: 25,fontWeight: FontWeight.w700),
+        ),
         backgroundColor: const Color.fromARGB(255, 105, 7, 7),
         automaticallyImplyLeading: false,
       ),
+      //this allows its content to be scrolled when it overflows the available space
       body: SingleChildScrollView(
-        padding:const EdgeInsets.symmetric(horizontal:40),
+        padding: const EdgeInsets.symmetric(horizontal: 40),
         child: Column(children: <Widget>[
+          //this is just an empty text
           const Text(''),
-          const Text(
+          Text(
             'These are your completed tasks',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: GoogleFonts.aboreto().copyWith(fontSize: 20,fontWeight: FontWeight.w700),
+            textAlign: TextAlign.center,
           ),
           const Text(''),
           ClipRRect(
@@ -50,6 +57,7 @@ class Completed extends StatelessWidget {
               ),
             ),
             label: 'Home',
+            
           ),
           BottomNavigationBarItem(
             icon: IconButton(

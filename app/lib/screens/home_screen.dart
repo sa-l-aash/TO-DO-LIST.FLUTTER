@@ -5,6 +5,7 @@ import 'package:app/screens/login_screen.dart';
 import 'package:app/screens/register.dart';
 import 'package:app/screens/tasks_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 //import 'package:path/path.dart';
 
 //HomeScreen is a subclass of 'StatelessWidget'
@@ -23,7 +24,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('To Do List'),
+        title:  Text('To Do List',
+                  style: GoogleFonts.aboreto().copyWith(fontSize: 25,fontWeight: FontWeight.w700),
+),
         backgroundColor: const Color.fromARGB(255, 105, 7, 7),
         automaticallyImplyLeading: false,
       ),
@@ -34,10 +37,10 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(''),
-            const Text(
+             Text(
               'Hi this is your to do list app',
               //styling a text
-              style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+          style: GoogleFonts.aboreto().copyWith(fontSize: 20,fontWeight: FontWeight.w700),
             ),
             const Text(''),
             const Icon(
@@ -61,19 +64,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const LoginScreen()));
                   },
-                  child: const Text('Login'),
+                  child:  Text('Login',
+                            style: GoogleFonts.aboreto().copyWith(fontSize: 15,fontWeight: FontWeight.w700),
+),
                 ),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const Register()));
                   },
-                  child: const Text('Register'),
+                  child:  Text('Register',
+                            style: GoogleFonts.aboreto().copyWith(fontSize: 15,fontWeight: FontWeight.w700),
+),
                 ),
               ],
             ),
-           
-           
           ],
         ),
       ),
@@ -92,7 +97,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Color.fromARGB(255, 255, 255, 255),
               ),
             ),
-            label: 'Home',
+            label:('Home'),
+            
           ),
           BottomNavigationBarItem(
             icon: IconButton(

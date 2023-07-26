@@ -2,6 +2,7 @@ import 'package:app/screens/completed.dart';
 // import 'package:app/screens/home_screen.dart';
 import 'package:app/screens/tasks_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Favorites extends StatelessWidget {
   const Favorites({super.key});
@@ -9,7 +10,11 @@ class Favorites extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Favorite Tasks'),
+        title:  Text(
+          'Favorite Tasks',
+          style: GoogleFonts.aboreto().copyWith(fontSize: 25,fontWeight: FontWeight.w700),
+
+        ),
         backgroundColor: const Color.fromARGB(255, 105, 7, 7),
         automaticallyImplyLeading: false,
       ),
@@ -18,10 +23,10 @@ class Favorites extends StatelessWidget {
         child: Column(
           children: <Widget>[
             const Text(''),
-            const Text(
+             Text(
               'These are your favorite tasks',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.right,
+          style: GoogleFonts.aboreto().copyWith(fontSize: 20,fontWeight: FontWeight.w700),
+              textAlign: TextAlign.center,
             ),
             const Text(''),
             ClipRRect(
@@ -34,7 +39,6 @@ class Favorites extends StatelessWidget {
               ),
             ),
             const Text(''),
-           
           ],
         ),
       ),
@@ -45,8 +49,8 @@ class Favorites extends StatelessWidget {
           BottomNavigationBarItem(
             icon: IconButton(
               onPressed: () {
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const TasksPage()));
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => const TasksPage()));
               },
               icon: const Icon(
                 Icons.home,

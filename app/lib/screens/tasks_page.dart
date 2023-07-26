@@ -1,4 +1,4 @@
-import 'package:app/Globals/Globals.dart';
+import 'package:app/Globals/globals_variables.dart';
 import 'package:app/screens/completed.dart';
 import 'package:app/screens/favorites.dart';
 import 'package:app/screens/home_screen.dart';
@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:app/models/task.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 //This page allows a user to create,delete, update a task and displays them on the screen
 //it also stores the tasks in the database
 
@@ -83,19 +84,31 @@ class _TasksPageState extends State<TasksPage> {
       builder: (context) {
         //AlertDialogs display above another page
         return AlertDialog(
-            title: const Text('Add Task'),
+            title: Text(
+              'Add Task',
+              style: GoogleFonts.aboreto()
+                  .copyWith(fontSize: 25, fontWeight: FontWeight.w700),
+            ),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 //one textfield to hold the title
                 TextField(
                   onChanged: (value) => title = value,
-                  decoration: const InputDecoration(labelText: 'Title'),
+                  decoration: InputDecoration(
+                    labelText: 'Title',
+                    hintStyle: GoogleFonts.aboreto()
+                        .copyWith(fontSize: 12, fontWeight: FontWeight.w700),
+                  ),
                 ),
                 //another textfield to hold the description
                 TextField(
                   onChanged: (value) => description = value,
-                  decoration: const InputDecoration(labelText: 'Description'),
+                  decoration: InputDecoration(
+                    labelText: 'Description',
+                    hintStyle: GoogleFonts.aboreto()
+                        .copyWith(fontSize: 12, fontWeight: FontWeight.w700),
+                  ),
                 ),
               ],
             ),
@@ -107,16 +120,25 @@ class _TasksPageState extends State<TasksPage> {
                     Navigator.of(context).pop();
                   });
                 },
-                child: const Text('Save '),
+                child: Text(
+                  'Save ',
+                  style: GoogleFonts.aboreto()
+                      .copyWith(fontSize: 12, fontWeight: FontWeight.w700),
+                ),
               ),
               TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: const Text('Cancel'),
+                child: Text(
+                  'Cancel',
+                  style: GoogleFonts.aboreto()
+                      .copyWith(fontSize: 12, fontWeight: FontWeight.w700),
+                ),
               )
             ]);
       },
     );
   }
+
 //this function deletes a specific task with a specific index
   Future<void> _deleteItem(int index) async {
     int taskIdTODelete = tasks[index].id;
@@ -171,25 +193,28 @@ class _TasksPageState extends State<TasksPage> {
         });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Your Tasks'),
+        title: Text(
+          'Your Tasks',
+          style: GoogleFonts.aboreto()
+              .copyWith(fontSize: 25, fontWeight: FontWeight.w700),
+        ),
         backgroundColor: const Color.fromARGB(255, 105, 7, 7),
         //this prevents the user from going to the previous page
         automaticallyImplyLeading: false,
       ),
       body: _buildList(),
-      //this is a button that runs the function 'showAddTaskDialog' 
+      //this is a button that runs the function 'showAddTaskDialog'
       //when the icons.add icon button is pressed
       floatingActionButton: FloatingActionButton(
         onPressed: showAddTaskDialog,
         child: const Icon(
           Icons.add,
         ),
-      ),//this aligns the icon to the center of the screen and makes it a float
+      ), //this aligns the icon to the center of the screen and makes it a float
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       //This is the bottom navigation bar with three icon buttons
       bottomNavigationBar: BottomNavigationBar(

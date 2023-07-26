@@ -1,9 +1,10 @@
 import 'package:app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:app/Globals/Globals.dart';
+import 'package:app/Globals/globals_variables.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
+
 
 //This is the entry point to the app
 void main() async {
@@ -43,6 +44,8 @@ class MyApp extends StatelessWidget {
       title: 'To do list flutter app',
       //here ive set the theme to be in dark mode
       theme: ThemeData.dark(),
+      
+      
       //here the HomeScreen page is what will be rendered first when the app is opened
       home: const HomeScreen(),
     );

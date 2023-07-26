@@ -1,10 +1,10 @@
 //this imports the ui components and themes
 // import 'package:app/screens/home_screen.dart';
-import 'package:app/Globals/Globals.dart';
+import 'package:app/Globals/globals_variables.dart';
 import 'package:app/screens/tasks_page.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
@@ -66,17 +66,15 @@ class _ForgotPassword extends State<ForgotPassword> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Forgot password'),
+        title: Text(
+          'Forgot password',
+          style: GoogleFonts.aboreto().copyWith(fontSize: 25),
+        ),
         backgroundColor: const Color.fromARGB(255, 105, 7, 7),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            const Text(''),
-            const Text(
-              'Forgot Password',
-              style: TextStyle(fontSize: 28),
-            ),
             const Text(''),
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
@@ -118,13 +116,12 @@ class _ForgotPassword extends State<ForgotPassword> {
                 ),
               ),
             ),
-            const Row(
+            Row(
               children: [
-                Padding(padding: EdgeInsets.all(6.0)),
+                const Padding(padding: EdgeInsets.all(6.0)),
                 Text(
                   'Must have a min of 8 characters including letters and integers',
-                  style: TextStyle(
-                      fontSize: 10, color: Color.fromARGB(221, 255, 255, 255)),
+          style: GoogleFonts.aboreto().copyWith(fontSize: 8,fontWeight: FontWeight.w700),
                 ),
               ],
             ),
@@ -132,6 +129,7 @@ class _ForgotPassword extends State<ForgotPassword> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 6),
               child: TextField(
+                
                 controller: _confirmNewPasswordController,
                 obscureText: true,
                 maxLength: 30,
@@ -155,7 +153,9 @@ class _ForgotPassword extends State<ForgotPassword> {
                     onPressed: () {
                       _login();
                     },
-                    child: const Text('Login'),
+                    child:  Text('Login',
+                              style: GoogleFonts.aboreto().copyWith(fontSize: 25,fontWeight: FontWeight.w700),
+),
                   ),
                 ),
                 const Text(''),

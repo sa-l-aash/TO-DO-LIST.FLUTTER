@@ -1,9 +1,9 @@
 import 'package:app/screens/tasks_page.dart';
 import 'package:flutter/material.dart';
 import 'package:app/screens/forgot_password.dart';
-// import 'package:sqflite/sqflite.dart';
-import 'package:app/Globals/Globals.dart';
+import 'package:app/Globals/globals_variables.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -64,8 +64,11 @@ class _LoginScreenState extends State<LoginScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login page'),
+        title:  Text('Login page',
+                  style: GoogleFonts.aboreto().copyWith(fontSize: 25,fontWeight: FontWeight.w700),
+),
         backgroundColor: const Color.fromARGB(255, 105, 7, 7),
+
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -73,9 +76,9 @@ class _LoginScreenState extends State<LoginScreen>
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(''),
-            const Text(
+             Text(
               'Login',
-              style: TextStyle(fontSize: 28),
+          style: GoogleFonts.aboreto().copyWith(fontSize: 20,fontWeight: FontWeight.w700),
             ),
             const Text(''),
             ClipRRect(
@@ -101,7 +104,6 @@ class _LoginScreenState extends State<LoginScreen>
                       TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
                   border: OutlineInputBorder(),
                 ),
-               
               ),
             ),
             const Text(''),
@@ -119,16 +121,14 @@ class _LoginScreenState extends State<LoginScreen>
                   ),
                   border: OutlineInputBorder(),
                 ),
-               
               ),
             ),
-            const Row(
+             Row(
               children: [
-                Padding(padding: EdgeInsets.all(6)),
+                const Padding(padding: EdgeInsets.all(6)),
                 Text(
                   'Must have a min of 8 characters including letters and integers',
-                  style: TextStyle(
-                      fontSize: 10, color: Color.fromARGB(221, 255, 255, 255)),
+                            style: GoogleFonts.aboreto().copyWith(fontSize: 8,fontWeight: FontWeight.w700),
                 ),
               ],
             ),
@@ -139,7 +139,9 @@ class _LoginScreenState extends State<LoginScreen>
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (context) => const ForgotPassword()));
               },
-              child: const Text('Forgot Password ?'),
+              child:  Text('Forgot Password ?',
+                        style: GoogleFonts.aboreto().copyWith(fontSize: 15,fontWeight: FontWeight.w700),
+),
             ),
             const Text(''),
             Row(
@@ -152,8 +154,10 @@ class _LoginScreenState extends State<LoginScreen>
                     onPressed: () {
                       _login();
                     },
-                    child: const Text(
+                    child:  Text(
                       'Login',
+                                style: GoogleFonts.aboreto().copyWith(fontSize: 15,fontWeight: FontWeight.w700),
+
                     ),
                   ),
                 ),
