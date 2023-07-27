@@ -123,16 +123,7 @@ class _LoginScreenState extends State<LoginScreen>
                 ),
               ),
             ),
-             Row(
-              children: [
-                const Padding(padding: EdgeInsets.all(6)),
-                Text(
-                  'Must have a min of 8 characters including letters and integers',
-                            style: GoogleFonts.aboreto().copyWith(fontSize: 8,fontWeight: FontWeight.w700),
-                ),
-              ],
-            ),
-            const Text(''),
+            
             const Text(''),
             TextButton(
               onPressed: () {

@@ -8,6 +8,7 @@ import 'dart:io';
 
 //This is the entry point to the app
 void main() async {
+  
   runApp(const MyApp());
 //this obtains the applications document directory and constructs a path
 //to a sqlite database with the name 'todo.db'

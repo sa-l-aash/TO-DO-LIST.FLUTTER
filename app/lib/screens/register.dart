@@ -148,18 +148,7 @@ class _RegisterState extends State<Register> {
                 ),
               ),
             ),
-             Row(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.all(6.0),
-                ),
-                Text(
-                  'Must have a min of 8 characters including letters and integers ',
-                            style: GoogleFonts.aboreto().copyWith(fontSize: 8,fontWeight: FontWeight.w700),
-
-                ),
-              ],
-            ),
+             
             const Text(''),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 6),

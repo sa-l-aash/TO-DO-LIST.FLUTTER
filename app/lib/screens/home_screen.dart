@@ -24,9 +24,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  Text('To Do List',
-                  style: GoogleFonts.aboreto().copyWith(fontSize: 25,fontWeight: FontWeight.w700),
-),
+        title: Text(
+          'To Do List',
+          style: GoogleFonts.aboreto()
+              .copyWith(fontSize: 25, fontWeight: FontWeight.w700),
+        ),
         backgroundColor: const Color.fromARGB(255, 105, 7, 7),
         automaticallyImplyLeading: false,
       ),
@@ -37,10 +39,11 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(''),
-             Text(
+            Text(
               'Hi this is your to do list app',
               //styling a text
-          style: GoogleFonts.aboreto().copyWith(fontSize: 20,fontWeight: FontWeight.w700),
+              style: GoogleFonts.aboreto()
+                  .copyWith(fontSize: 20, fontWeight: FontWeight.w700),
             ),
             const Text(''),
             const Icon(
@@ -49,12 +52,14 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             const Text(''),
             ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: const Image(
-                image: AssetImage('images/undraw_Add_tasks_re_s5yj.png'),
-                width: 400,
-              ),
-            ),
+                borderRadius: BorderRadius.circular(10),
+                child: const Hero(
+                  tag: 'hero',
+                  child: Image(
+                    image: AssetImage('images/undraw_Add_tasks_re_s5yj.png'),
+                    width: 400,
+                  ),
+                )),
             const Text(''),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -64,18 +69,22 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const LoginScreen()));
                   },
-                  child:  Text('Login',
-                            style: GoogleFonts.aboreto().copyWith(fontSize: 15,fontWeight: FontWeight.w700),
-),
+                  child: Text(
+                    'Login',
+                    style: GoogleFonts.aboreto()
+                        .copyWith(fontSize: 15, fontWeight: FontWeight.w700),
+                  ),
                 ),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const Register()));
                   },
-                  child:  Text('Register',
-                            style: GoogleFonts.aboreto().copyWith(fontSize: 15,fontWeight: FontWeight.w700),
-),
+                  child: Text(
+                    'Register',
+                    style: GoogleFonts.aboreto()
+                        .copyWith(fontSize: 15, fontWeight: FontWeight.w700),
+                  ),
                 ),
               ],
             ),
@@ -97,8 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: Color.fromARGB(255, 255, 255, 255),
               ),
             ),
-            label:('Home'),
-            
+            label: ('Home'),
           ),
           BottomNavigationBarItem(
             icon: IconButton(
