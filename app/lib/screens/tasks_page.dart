@@ -192,7 +192,12 @@ class _TasksPageState extends State<TasksPage> {
           ));
         });
   }
-
+ Future<void> viewTable() async {
+    print(await todoDB.query(tasksTable));
+  }
+ Future<void> deleteAll() async {
+    print(await todoDB.delete(tasksTable));
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
