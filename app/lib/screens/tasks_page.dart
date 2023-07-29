@@ -150,6 +150,7 @@ class _TasksPageState extends State<TasksPage> {
   }
 
   Widget _buildList() {
+
     return ListView.builder(
         //this moves the textfield away from the edge of the screen
         padding: const EdgeInsets.all(10),
@@ -192,12 +193,15 @@ class _TasksPageState extends State<TasksPage> {
           ));
         });
   }
- Future<void> viewTable() async {
+
+  Future<void> viewTable() async {
     print(await todoDB.query(tasksTable));
   }
- Future<void> deleteAll() async {
+
+  Future<void> deleteAll() async {
     print(await todoDB.delete(tasksTable));
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
