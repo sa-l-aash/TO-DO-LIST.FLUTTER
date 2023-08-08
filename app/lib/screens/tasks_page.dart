@@ -150,7 +150,6 @@ class _TasksPageState extends State<TasksPage> {
   }
 
   Widget _buildList() {
-
     return ListView.builder(
         //this moves the textfield away from the edge of the screen
         padding: const EdgeInsets.all(10),
