@@ -1,8 +1,10 @@
 import 'package:app/screens/login_screen.dart';
 import 'package:flutter/material.dart';
-// import 'package:sqflite/sqflite.dart';
+import 'package:sqflite/sqflite.dart';
 import 'package:app/Globals/globals_variables.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -47,28 +49,40 @@ class _RegisterState extends State<Register> {
     final String password = _passwordController.text;
     final String confirmPassword = _confirmPasswordController.text;
 
-    if (_nameController.text.isEmpty) {
-      mySnackBar('name is field empty', Colors.red);
-    } else if (_emailController.text.isEmpty) {
-      mySnackBar('Email field is empty', Colors.red);
-    } else if (_passwordController.text.isEmpty) {
-      mySnackBar('Password field is empty', Colors.red);
-    } else if (_confirmPasswordController.text.isEmpty) {
-      mySnackBar('Confirm Password field is empty', Colors.red);
+
+    if (_nameController.text.isEmpty || _emailController.text.isEmpty ||
+        _passwordController.text.isEmpty ||
+        _confirmPasswordController.text.isEmpty) {
+      mySnackBar('Please fill in all fields', Colors.red);
     } else if (password != confirmPassword) {
       mySnackBar('Passwords do not match!', Colors.red);
-      return;
     } else {
-      await todoDB.insert(userTable, {
-        'name': name,
-        ' email': email,
-        ' password': password,
-      });
+      // Send registration data to the Laravel backend
+      final response = await http.post(
+        Uri.parse('http://127.0.0.1:8000/api/register'),
+       
+        body: {
+          'name': name,
+          'email': email,
+          'password': password,
+        },
+      );
+      if (response.statusCode == 200) {
+        // Registration successful, you can navigate to a success page or handle it as needed
+        mySnackBar('Registration Successful', Colors.green);
 
-      Navigator.pushReplacement<void, void>(context,
-          MaterialPageRoute<void>(builder: (context) => const LoginScreen()));
+        // Use Navigator to push the login page onto the stack
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute<void>(builder: (context) => const LoginScreen()),
+        );
+      } else {
+        // Registration failed, handle the error (e.g., display an error message)
+        mySnackBar('Registration Failed', Colors.red);
+      }
     }
-  }
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -122,11 +136,11 @@ class _RegisterState extends State<Register> {
                 controller: _emailController,
                 maxLength: 30,
                 cursorColor: Colors.blue,
-                //this decorates things inside the textfield
+                //this decorates things inside the text field
                 decoration: const InputDecoration(
                   labelText: 'Email',
                   labelStyle:
-                      TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+                  TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -148,7 +162,7 @@ class _RegisterState extends State<Register> {
                 ),
               ),
             ),
-             
+
             const Text(''),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 6),
@@ -181,7 +195,7 @@ class _RegisterState extends State<Register> {
       ),
     );
   }
-
+}
 // class CheckboxExample extends StatefulWidget {
 //   const CheckboxExample({super.key});
 
@@ -218,4 +232,4 @@ class _RegisterState extends State<Register> {
 //     );
 //   }
 // }
-}
+

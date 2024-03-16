@@ -4,6 +4,8 @@ import 'package:app/screens/forgot_password.dart';
 import 'package:app/Globals/globals_variables.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:http/http.dart' as http;
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -46,19 +48,49 @@ class _LoginScreenState extends State<LoginScreen>
       String password = _passwordController.text;
       // Retrieves the email and password entered by the user
 
-      List<Map<String, dynamic>> users = await todoDB.rawQuery(
-        "SELECT * FROM Users WHERE email = '$email' AND password = '$password'",
-      );
+      try {
+        // Send login data to the Laravel backend
+        final response = await http.post(
+          Uri.parse('http://127.0.0.1:8000/api/login'), // Replace with your Laravel API login URL
+          body: {
+            'email': email,
+            'password': password,
+          },
+        );
+        if (response.statusCode == 200) {
+          // Login successful, navigate to the task page
+          mySnackBar('Login Successful', Colors.green);
 
-      if (users.isEmpty) {
-        Fluttertoast.showToast(msg: 'Login unsuccessful!');
-      } else {
-        Fluttertoast.showToast(msg: 'Login successful');
-        Navigator.pushReplacement<void, void>(context,
-            MaterialPageRoute<void>(builder: (context) => const TasksPage()));
+          // Use Navigator to push the TasksPage onto the stack
+          Navigator.pushReplacement<void, void>(
+            context,
+            MaterialPageRoute<void>(
+              builder: (context) => const TasksPage()),
+          );
+        } else {
+          // Login failed, handle the error (e.g., display an error message)
+          mySnackBar('Login Failed', Colors.red);
+        }
+      } catch (error) {
+        // Handle any network or server-related errors
+        mySnackBar('Network Error', Colors.red);
       }
     }
   }
+
+  //     List<Map<String, dynamic>> users = await todoDB.rawQuery(
+  //       "SELECT * FROM Users WHERE email = '$email' AND password = '$password'",
+  //     );
+  //
+  //     if (users.isEmpty) {
+  //       Fluttertoast.showToast(msg: 'Login unsuccessful!');
+  //     } else {
+  //       Fluttertoast.showToast(msg: 'Login successful');
+  //       Navigator.pushReplacement<void, void>(context,
+  //           MaterialPageRoute<void>(builder: (context) => const TasksPage()));
+  //     }
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
